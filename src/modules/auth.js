@@ -65,6 +65,10 @@ export const registerSuccess = createAction(REGISTER_SUCCESS, response => respon
 
 export const registerFailure = createAction(REGUISTER_FAILURE, response => response);
 
+export const loginSuccess = createAction(LOGIN_SUCCESS, response => response);
+
+export const loginFailure = createAction(LOGIN_FAILURE, response => response);
+
 // const registerSaga = createRequestSaga(REGISTER, authAPI.register);
 // const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 // export function* authSaga() {
@@ -89,8 +93,10 @@ const initialState = {
     email: '',
     password: '',
   },
-  auth: null,
-  authError: null,
+  loginAuth: null,
+  loginAuthError: null,
+  registerAuth: null,
+  registerAuthError: null,
 }
 
 const auth = handleActions(
@@ -125,23 +131,23 @@ const auth = handleActions(
       draft[form].secondCheck = false;
       draft[form].thirdCheck = false;
     }),
-    [REGISTER_SUCCESS]: (state, { payload: auth}) => ({
+    [REGISTER_SUCCESS]: (state, { payload: registerAuth}) => ({
       ...state,
-      authError: null,
-      auth,
+      registerAuthError: null,
+      registerAuth,
     }),
     [REGUISTER_FAILURE]: (state, { payload: error}) => ({
       ...state,
-      authError: error,
+      registerAuthError: error,
     }),
-    [LOGIN_SUCCESS]: (state, { payload: auth}) => ({
+    [LOGIN_SUCCESS]: (state, { payload: loginAuth}) => ({
       ...state,
-      authError: null,
-      auth,
+      loginAuthError: null,
+      loginAuth,
     }),
     [LOGIN_FAILURE]: (state, { payload: error}) => ({
       ...state,
-      authError: error,
+      loginAuthError: error,
     }),
   },
   initialState,
