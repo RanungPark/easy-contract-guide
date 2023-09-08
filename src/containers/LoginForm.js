@@ -11,10 +11,10 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { form, auth, authError, user } = useSelector(({auth, user}) => ({
+  const { form, loginAuth, loginAuthError, user } = useSelector(({auth, user}) => ({
     form: auth.login,
-    auth: auth.auth,
-    authError: auth.authError,
+    loginAuth: auth.loginAuth,
+    loginAuthError: auth.loginAuthError,
     user: user.user,
   }));
 
@@ -50,18 +50,26 @@ const LoginForm = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (authError) {
-      setError(authError.responseMessage);
+    if (loginAuthError) {
+      setError(loginAuthError.responseMessage);
       return;
     }
-    if (auth) {
+    if (loginAuth) {
       console.log('로그인 성공');
+      console.log(loginAuth);
+      axios.get('http://localhost:8080/check')
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error){
+        console.log(error);
+      })
     }
-  },[auth, authError]);
+  },[loginAuth, loginAuthError]);
 
   useEffect(()=> {
     if(user){
-      navigate('/');
+      navigate('/main');
     }
   },[navigate, user]);
 
