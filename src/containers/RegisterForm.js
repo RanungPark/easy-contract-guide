@@ -14,11 +14,11 @@ const RegisterForm = () => {
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
-  const { form, check, auth, authError, user} = useSelector(({auth, user}) => ({
+  const { form, check, registerAuth, registerAuthError, user} = useSelector(({auth, user}) => ({
     form: auth.register,
     check: auth.check,
-    auth: auth.auth,
-    authError: auth.authError,
+    registerAuth: auth.registerAuth,
+    registerAuthError: auth.registerAuthError,
     user: user.user,
   }));
 
@@ -117,13 +117,13 @@ const RegisterForm = () => {
   }, [dispatch])
 
   useEffect(() => {
-    if (authError) {
-      setError(authError.responseMessage)
+    if (registerAuthError) {
+      setError(registerAuthError.responseMessage)
       return;
     }
-    if (auth) {
+    if (registerAuth) {
       console.log('회원가입 성공');
-      console.log(auth);
+      console.log(registerAuth);
       // axios.get('http://localhost:8080/check')
       // .then(function(response) {
       //   console.log(response);
@@ -132,13 +132,13 @@ const RegisterForm = () => {
       //   console.log(error);
       // })
     }
-  },[auth, authError]);
+  },[registerAuth, registerAuthError]);
 
   useEffect(() => {
-    if (user) {
+    if (registerAuth) {
       navigate('/')
     }
-  }, [navigate, user]);
+  }, [navigate, registerAuth]);
 
   return (
     <AuthForm 
