@@ -6,16 +6,18 @@ import RegisterPage from './pages/RegisterPage';
 import BuildingUploadPage from './pages/BuildingUploadPage';
 import RegisterUploadPage from './pages/RegisterUploadPage';
 import ContractUploadPage from './pages/ContractUploadPage';
+import TestPage from './test/pages/TestPage';
 
 const App = () => {
   return (
     <Routes>
-      <Route path='/' element={<ContractListPage />}/>
-      <Route path='/login' element={<LoginPage />}/>
+      <Route path='/' element={<LoginPage />}/>
       <Route path='/register' element={<RegisterPage />}/>
+      <Route path='/main' element={<ContractListPage />}/>
       <Route path='/upload/building' element={<BuildingUploadPage />} />
       <Route path='/upload/register' element={<RegisterUploadPage />} />
       <Route path='/upload/contract' element={<ContractUploadPage />} />
+      <Route path='/test' element={<TestPage />} />
     </Routes>
   );
 };
