@@ -3,8 +3,9 @@ import AuthForm from '../components/auth/AuthForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, login, loginFailure, loginSuccess } from '../modules/auth';
 import { useNavigate } from 'react-router-dom';
-import { checkUser } from '../modules/user';
+import { checkUser, checkUserSuccess } from '../modules/user';
 import axios from 'axios';
+import { fixUserId } from '../modules/file';
 
 const LoginForm = () => {
   const [error, setError] = useState(null);
@@ -56,22 +57,20 @@ const LoginForm = () => {
     }
     if (loginAuth) {
       console.log('로그인 성공');
-      console.log(loginAuth);
-      axios.get('http://localhost:8080/check')
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error){
-        console.log(error);
-      })
+      dispatch(
+        checkUserSuccess(loginAuth)
+      )
     }
-  },[loginAuth, loginAuthError]);
+  },[loginAuth, loginAuthError, dispatch]);
 
   useEffect(()=> {
     if(user){
-      navigate('/main');
+      dispatch(
+        fixUserId(user.id)
+      )
+      navigate('/standard');
     }
-  },[navigate, user]);
+  },[navigate, user, dispatch]);
 
   return (
     <AuthForm 
