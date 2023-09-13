@@ -45,7 +45,7 @@ const UploadTemplate = ({children, props}) => {
   return (
     <UploadTemplateBlock>
       <WhiteBox>
-      <Link to='/' className='backPage'><MdArrowBackIosNew /></Link>
+      <Link to='/standard' className='backPage'><MdArrowBackIosNew /></Link>
         <div className='type-area'>
           {props}
         </div>
