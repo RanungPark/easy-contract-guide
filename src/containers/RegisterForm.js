@@ -3,10 +3,7 @@ import AuthForm from '../components/auth/AuthForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, register, registerFailure, registerSuccess, toggleAllFalseCheck, toggleAllTrueCheck,  toggleFalseCheck,  toggleTrueCheck } from '../modules/auth';
 import { useNavigate } from 'react-router-dom';
-import { checkUser } from '../modules/user';
 import axios from 'axios';
-import * as authAPI from '../libs/api/auth';
-
 
 
 
@@ -14,12 +11,11 @@ const RegisterForm = () => {
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
-  const { form, check, registerAuth, registerAuthError, user} = useSelector(({auth, user}) => ({
+  const { form, check, registerAuth, registerAuthError} = useSelector(({auth}) => ({
     form: auth.register,
     check: auth.check,
     registerAuth: auth.registerAuth,
     registerAuthError: auth.registerAuthError,
-    user: user.user,
   }));
 
   const navigate = useNavigate();
@@ -107,8 +103,6 @@ const RegisterForm = () => {
         registerFailure(error.response.data)
       )
     })
-
-    // dispatch(register({email, password, allCheck, username}))
   }
 
   useEffect(() => {
@@ -124,13 +118,6 @@ const RegisterForm = () => {
     if (registerAuth) {
       console.log('회원가입 성공');
       console.log(registerAuth);
-      // axios.get('http://localhost:8080/check')
-      // .then(function(response) {
-      //   console.log(response);
-      // })
-      // .catch(function(error){
-      //   console.log(error);
-      // })
     }
   },[registerAuth, registerAuthError]);
 
