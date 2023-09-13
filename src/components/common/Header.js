@@ -4,6 +4,8 @@ import Button from './Button';
 import { Link } from 'react-router-dom';
 import palette from '../../libs/styles/palette';
 import { ResponsiveMid } from './Responsive';
+import { useSelector } from 'react-redux';
+import Blur from './Blur';
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -34,26 +36,32 @@ const Wrapper = styled(ResponsiveMid)`
 `
 const UserIndo = styled.div`
   font-weight: 800;
-  margin-right: 1rem;
+  margin: 0 0.5rem;
 `
 
-const Header = ({user, onLogout}) => {
+const Header = () => {
+  const {user, contract,} = useSelector(({user, file}) => 
+  ({
+    user: user.user,
+    contract: file.contract.file
+  }));
+
   return (
     <>
       <HeaderBlock>
         <Wrapper>
-          <Link to="/main" className='logo'>
+          <Link to="/standard" className='logo'>
             졸업작품 사이트 명
           </Link>
-          <Link to="/main" className='headerList'>표준 계약서와 비교</Link>
-          <Link to="/main" className='headerList'>건축물 대장과 비교</Link>
-          <Link to="/main" className='headerList'>등기부 등본과 비교</Link>
+          <Link to="/standard" className='headerList'>표준 계약서와 비교</Link>
+          <Link to="/standard" className='headerList'>건축물 대장과 비교</Link>
+          <Link to="/standard" className='headerList'>등기부 등본과 비교</Link>
           <Link to="/upload/contract" className='headerList'>계약서 추가</Link>
           {
             user ? (
               <div className='right'>
                 <UserIndo>{user.username}</UserIndo>
-                <Button onClick={onLogout}>로그아웃</Button>
+                <Button>로그아웃</Button>
               </div>
             ) :(
               <div className='right'>
