@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import palette from '../../libs/styles/palette';
 import { ResponsiveMid } from './Responsive';
 import { useSelector } from 'react-redux';
-import Blur from './Blur';
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -40,10 +39,9 @@ const UserIndo = styled.div`
 `
 
 const Header = () => {
-  const {user, contract,} = useSelector(({user, file}) => 
+  const {user} = useSelector(({user}) => 
   ({
     user: user.user,
-    contract: file.contract.file
   }));
 
   return (
@@ -61,7 +59,7 @@ const Header = () => {
             user ? (
               <div className='right'>
                 <UserIndo>{user.username}</UserIndo>
-                <Button>로그아웃</Button>
+                <Button cyan>로그아웃</Button>
               </div>
             ) :(
               <div className='right'>
