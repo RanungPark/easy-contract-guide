@@ -25,8 +25,6 @@ const StandardFileForm = () => {
 
   return (
     <FileViewForm 
-      type = '표준계약서'
-      imageUrls = {imageUrls}
       itemsPerPage = {itemsPerPage}
       page = {page}
       handleChangePage = {handleChangePage}

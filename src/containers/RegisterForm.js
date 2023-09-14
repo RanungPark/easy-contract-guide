@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AuthForm from '../components/auth/AuthForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, register, registerFailure, registerSuccess, toggleAllFalseCheck, toggleAllTrueCheck,  toggleFalseCheck,  toggleTrueCheck } from '../modules/auth';
+import { changeField, initializeForm, registerFailure, registerSuccess, toggleAllFalseCheck, toggleAllTrueCheck,  toggleFalseCheck,  toggleTrueCheck } from '../modules/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 

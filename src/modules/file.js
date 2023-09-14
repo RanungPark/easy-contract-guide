@@ -18,8 +18,9 @@ const FIX_USER_ID = 'file/FIX_USER_ID';
 
 const FIX_CONTRACT_ID = 'file/FIX_CONTRACT_ID';
 
-export const fixUserId = createAction(FIX_USER_ID, userId => userId);
-export const fixContractId = createAction(FIX_CONTRACT_ID, contractId => contractId);
+export const contractUploadFile = createAction(CONTRACT_UPLOADFILE);
+export const buildingUploadFile = createAction(BUILDING_UPLOADFILE);
+export const registerUploadFile = createAction(REGISTER_UPLOADFILE);
 
 export const contractUploadFileSuccess = createAction(CONTRACT_UPLOADFILE_SUCCESS,
   ({form, key, value}) => ({
@@ -36,6 +37,41 @@ export const contractUploadFileFailure = createAction(CONTRACT_UPLOADFILE_FAILUR
     value,
   })
 );
+
+export const buildingUploadFileSuccess = createAction(BUILDING_UPLOADFILE_SUCCESS,
+  ({form, key, value}) => ({
+  form,
+  key,
+  value,
+  })
+);
+
+export const buildingUploadFileFailure = createAction(BUILDING_UPLOADFILE_FAILURE,
+  ({form, key, value}) => ({
+    form,
+    key,
+    value,
+  })
+);
+
+export const registerUploadFileSuccess = createAction(REGISTER_UPLOADFILE_SUCCESS,
+  ({form, key, value}) => ({
+  form,
+  key,
+  value,
+  })
+);
+
+export const registerUploadFileFailure = createAction(REGISTER_UPLOADFILE_FAILURE,
+  ({form, key, value}) => ({
+    form,
+    key,
+    value,
+  })
+);
+
+export const fixUserId = createAction(FIX_USER_ID, userId => userId);
+export const fixContractId = createAction(FIX_CONTRACT_ID, contractId => contractId);
 
 const initialState = {
   contract: {
@@ -63,24 +99,22 @@ const file = handleActions(
     [CONTRACT_UPLOADFILE_FAILURE]: (state, { payload: {form, key, value}}) =>
     produce(state, draft => {
       draft[form][key] = value;
-  }),
-    [BUILDING_UPLOADFILE_SUCCESS]: (state, { payload: file}) => ({
-      ...state,
-      fileError: null,
-      file,
     }),
-    [BUILDING_UPLOADFILE_FAILURE]: (state, { payload: error}) => ({
-      ...state,
-      fileError: error,
+    [BUILDING_UPLOADFILE_SUCCESS]: (state, { payload: {form, key, value}}) => 
+    produce(state, draft => {
+        draft[form][key] = value;
     }),
-    [REGISTER_UPLOADFILE_SUCCESS]: (state, { payload: file}) => ({
-      ...state,
-      fileError: null,
-      file,
+    [BUILDING_UPLOADFILE_FAILURE]: (state, { payload: {form, key, value}}) =>
+    produce(state, draft => {
+      draft[form][key] = value;
     }),
-    [REGISTER_UPLOADFILE_FAILURE]: (state, { payload: error}) => ({
-      ...state,
-      fileError: error,
+    [REGISTER_UPLOADFILE_SUCCESS]: (state, { payload: {form, key, value}}) => 
+    produce(state, draft => {
+        draft[form][key] = value;
+    }),
+    [REGISTER_UPLOADFILE_FAILURE]: (state, { payload: {form, key, value}}) =>
+    produce(state, draft => {
+      draft[form][key] = value;
     }),
     [FIX_USER_ID]: (state, {payload: userId}) => ({
       ...state,
@@ -94,4 +128,4 @@ const file = handleActions(
   initialState,
 )
 
-export default file
+export default file;

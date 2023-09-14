@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import AuthForm from '../components/auth/AuthForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, login, loginFailure, loginSuccess } from '../modules/auth';
+import { changeField, initializeForm, loginFailure, loginSuccess } from '../modules/auth';
 import { useNavigate } from 'react-router-dom';
-import { checkUser, checkUserSuccess } from '../modules/user';
+import { checkUserSuccess } from '../modules/user';
 import axios from 'axios';
 import { fixUserId } from '../modules/file';
 
