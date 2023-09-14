@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UploadForm from '../components/upload/UploadForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { contractUploadFileFailure, contractUploadFileSuccess, fixContractId } from '../modules/file';
 
 const ContractUploadForm = () => {
   const [pdfFile, setPdfFile] = useState(null);
   const [text, setText] = useState('');
   const [message, setMessage] = useState(false);
-  const userId = 1;
+
+  const {contract ,userId} = useSelector(({file}) => 
+  ({
+    contract: file.contract,
+    userId: file.userId,
+   }))
   const dispatch = useDispatch();
 
   const onChange = e => {
@@ -18,9 +24,9 @@ const ContractUploadForm = () => {
     console.log(file);
   };
 
+
   const onSubmit = e => {
     e.preventDefault();
-
     console.log('서밋함');
     if(!pdfFile) {
       setMessage('Please select an PDF');
@@ -37,13 +43,39 @@ const ContractUploadForm = () => {
     })
     .then(function (response) {
       console.log(response.data);
-      setMessage(`File upload completed`);
+      dispatch(
+        contractUploadFileSuccess({
+          form: 'contract',
+          key: 'file',
+          value: response.data.data
+        })
+      )
     })
     .catch(function (error) {
       console.log(error.response.data);
-      setMessage(error.response.data.responseMessage)
+      dispatch(
+        contractUploadFileFailure({
+          form: 'contract',
+          key: 'file',
+          value: error.response.data
+        })
+      )
     })
   }
+
+  useEffect(() => {
+    const {file, error} = contract
+    if(error) {
+      setMessage(error.responseMessage);
+      return;
+    }
+    if(file) {
+      dispatch(
+        fixContractId(file.contractId)
+      )
+      setMessage(`File upload completed`);
+    }
+  },[contract, dispatch]);
 
   return (
     <UploadForm
