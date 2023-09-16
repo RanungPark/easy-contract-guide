@@ -27,15 +27,15 @@ export const registerResultSuccess = createAction(REGISTER_RESULT_SUCCESS,);
 export const registerResultFailure = createAction(REGISTER_RESULT_FAILURE,);
 
 const initialState = {
-  contract: {
+  contractResult: {
     result: null,
     error: null,
   },
-  building: {
+  buildingResult: {
     result: null,
     error: null,
   },
-  register: {
+  registerResult: {
     result: null,
     error: null,
   },
