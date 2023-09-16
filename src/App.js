@@ -6,14 +6,14 @@ import BuildingUploadPage from './pages/BuildingUploadPage';
 import RegisterUploadPage from './pages/RegisterUploadPage';
 import ContractUploadPage from './pages/ContractUploadPage';
 import TestPage from './test/pages/TestPage';
-import StandardPage from './pages/StandardPage';
+import StandardViewPage from './pages/StandardViewPage';
 
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<LoginPage />} />
       <Route path='/register' element={<RegisterPage />} />
-      <Route path='/standard' element={<StandardPage />} />
+      <Route path='/standard' element={<StandardViewPage />} />
       <Route path='/upload/building' element={<BuildingUploadPage />} />
       <Route path='/upload/register' element={<RegisterUploadPage />} />
       <Route path='/upload/contract' element={<ContractUploadPage />} />
