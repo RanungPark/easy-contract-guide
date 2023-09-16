@@ -1,6 +1,5 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import palette from '../../libs/styles/palette';
 
 const AnalyzeTemplateBlock = styled.div`
   position: relative;

@@ -1,7 +1,6 @@
 import { Pagination } from '@mui/material';
 import React from 'react';
 import { styled } from 'styled-components';
-import palette from '../../libs/styles/palette';
 
 const CommentFormBlock = styled.div`
   display: flex;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import Button from './Button';
-import palette from '../../libs/styles/palette';
 
 const ResultBlock = styled.div`
   position: relative;
