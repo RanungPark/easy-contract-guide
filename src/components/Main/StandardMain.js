@@ -56,10 +56,10 @@ const StandardMain = () => {
         </> 
         : 
         <>
-          <FileViewTemplate>
+          <FileViewTemplate props={'표준계약서'}>
             <StandardFileForm />
           </FileViewTemplate>
-          <FileViewTemplate>
+          <FileViewTemplate props={'나의 계약서'}>
             <ContractFileForm />
           </FileViewTemplate>
           <AnalyzeTemplate props={'표준계약서와 비교 결과'}>
