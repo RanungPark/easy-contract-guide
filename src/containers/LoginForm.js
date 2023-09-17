@@ -68,7 +68,7 @@ const LoginForm = () => {
       dispatch(
         fixUserId(user.id)
       )
-      navigate('/standard');
+      navigate('/guide');
     }
   },[navigate, user, dispatch]);
 
