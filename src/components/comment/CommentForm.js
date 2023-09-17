@@ -33,6 +33,7 @@ const CommentBox = styled.div`
 const Comment = styled.div`
   font-size: 1.125rem;
   margin: 1rem;
+  white-space: pre-wrap;
 `
 
 const CommentForm = ({currentPageComments, commentsPage, itemsPerPage, page, handleChange}) => {
