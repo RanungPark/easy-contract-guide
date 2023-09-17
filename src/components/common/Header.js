@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import palette from '../../libs/styles/palette';
-import { ResponsiveMid } from './Responsive';
+import { ResponsiveBig } from './Responsive';
 import { useSelector } from 'react-redux';
 
 const HeaderBlock = styled.div`
@@ -11,7 +11,7 @@ const HeaderBlock = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
 `;
 
-const Wrapper = styled(ResponsiveMid)`
+const Wrapper = styled(ResponsiveBig)`
   height: 4rem;
   display: flex;
   align-items: center;
@@ -49,11 +49,12 @@ const Header = () => {
       <HeaderBlock>
         <Wrapper>
           <Link to="/standard" className='logo'>
-            졸업작품 사이트 명
+          Easy Contract Guide  
           </Link>
           <Link to="/standard" className='headerList'>표준 계약서와 비교</Link>
           <Link to="/standard" className='headerList'>건축물 대장과 비교</Link>
           <Link to="/standard" className='headerList'>등기부 등본과 비교</Link>
+          <Link to="/guide" className='headerList'>가이드</Link>
           <Link to="/upload/contract" className='headerList'>계약서 추가</Link>
           {
             user ? (
