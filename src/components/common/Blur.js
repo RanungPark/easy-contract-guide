@@ -45,17 +45,17 @@ const Blur = ({type}) => {
         {
           type === 'standard' ?
           <>
-            <div className='error-massage'>임대차 계약서 등록 후 이용해주세요</div>
+            <ErrorBox className='error-massage'>임대차 계약서 등록 후 이용해주세요</ErrorBox>
             <Button to="/upload/contract">임대차 계약 추가</Button>
           </> : (
             type === 'building' ?
             <>
-              <div className='error-massage'>건축물 대장을 등록 후 이용해주세요</div>
+              <ErrorBox className='error-massage'>건축물 대장을 등록 후 이용해주세요</ErrorBox>
               <Button to="/upload/building">건축물 대장 추가</Button>
             </> : (
               type === 'register' ?
               <>
-                <div className='error-massage'>등기부 등본을 등록 후 이용해주세요</div>
+                <ErrorBox className='error-massage'>등기부 등본을 등록 후 이용해주세요</ErrorBox>
                 <Button to="/upload/register">등기부 등본 추가</Button>
               </> : <> </>
             )
