@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import palette from '../../libs/styles/palette';
 
 const AnalyzeTemplateBlock = styled.div`
   position: relative;
@@ -18,7 +19,7 @@ const AnalyzeTemplateBlock = styled.div`
   }
 `;
 
-const WhiteBox = styled.div`
+const Wrapper = styled.div`
   .type-area {
     display: block;
     padding-bottom: 0.5rem;
@@ -26,7 +27,8 @@ const WhiteBox = styled.div`
     text-align: center;
     font-weight: bold;
     letter-spacing: 2px;
-    font-size: 1.2rem
+    font-size: 1.2rem;
+    color: ${palette.gray[7]};
   }
   box-shadow: 0 0 8px rgba(0,0,0,0.025);
   padding: 2rem;
@@ -40,14 +42,14 @@ const ResultWrapper = styled.div`
 const AnalyzeTemplate = ({children, props}) => {
   return (
     <AnalyzeTemplateBlock>
-      <WhiteBox>
+      <Wrapper>
            <div  className='type-area'>
             {props}
           </div>
         <ResultWrapper>
           {children}
         </ResultWrapper> 
-      </WhiteBox>
+      </Wrapper>
     </AnalyzeTemplateBlock >
   );
 };
