@@ -7,6 +7,7 @@ import RegisterUploadPage from './pages/RegisterUploadPage';
 import ContractUploadPage from './pages/ContractUploadPage';
 import TestPage from './test/pages/TestPage';
 import StandardViewPage from './pages/StandardViewPage';
+import GuidePage from './pages/GuidePage';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Route path='/upload/register' element={<RegisterUploadPage />} />
       <Route path='/upload/contract' element={<ContractUploadPage />} />
       <Route path='/test' element={<TestPage />} />
+      <Route path='/guide' element={<GuidePage />} />
     </Routes>
   );
 };
