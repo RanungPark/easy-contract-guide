@@ -49,7 +49,7 @@ const StandardMain = () => {
       {file === null ? 
         <>
           <Dummy />
-          <FileViewTemplate>
+          <FileViewTemplate props={'표준계약서'}>
             <StandardFileForm />
           </FileViewTemplate>
           <Dummy />
