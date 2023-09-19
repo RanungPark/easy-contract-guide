@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { contractResultFailure, contractResultSuccess } from '../modules/result';
 import CommentForm from '../components/comment/CommentForm';
+import PieChartForm from '../components/comment/PieChartForm';
 
 const ContractResultFormBlock = styled.div`
   width: 100%;
@@ -101,6 +102,7 @@ const ContractResultForm = () => {
         </Button>
         </form>
       </> : <>
+      <PieChartForm />
       <CommentForm
         currentPageComments = {currentPageComments}
         commentsPage = {commentsPage}
