@@ -1,9 +1,11 @@
 import { Pagination } from '@mui/material';
 import React from 'react';
 import { styled } from 'styled-components';
+import palette from '../../libs/styles/palette';
 
 const CommentFormBlock = styled.div`
   display: flex;
+  margin-top: 3rem;
   flex-direction: column;
   gap: 2rem;
   height: 100%;
@@ -15,9 +17,8 @@ const PaginationPosition = styled(Pagination)`
   bottom: 0;
 `
 const CommentBox = styled.div`
-  height:36.5rem;
+  height:18rem;
   overflow-y: scroll;
-
 
   &::-webkit-scrollbar {
     display:none;
@@ -27,13 +28,23 @@ const CommentBox = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   }
-
 `;
 
+
 const Comment = styled.div`
-  font-size: 1.125rem;
+  font-size: 1.12rem;
   margin: 1rem;
   white-space: pre-wrap;
+
+  span {
+    color: #ef6681;
+    font-weight: 800;
+  }
+
+  b {
+    font-size: 1.25rem;
+    color: ${palette.cyan[5]};
+  }
 `
 
 const CommentForm = ({currentPageComments, commentsPage, itemsPerPage, page, handleChange}) => {
@@ -42,7 +53,7 @@ const CommentForm = ({currentPageComments, commentsPage, itemsPerPage, page, han
       <CommentBox>
         {
           currentPageComments.map((comment, index) => (
-            <Comment key={index}>{comment}</Comment>
+            <Comment key={index} dangerouslySetInnerHTML={ {__html: comment} }></Comment>
           ))
         }
       </CommentBox>
