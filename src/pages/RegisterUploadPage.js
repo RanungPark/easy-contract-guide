@@ -1,12 +1,9 @@
 import React from 'react';
-import UploadTemplate from '../components/upload/UploadTemplate';
-import RegisterUploadForm from '../containers/RegisterUploadForm';
+import RegisterUploadView from '../components/view/RegisterUploadView';
 
 const RegisterUploadPage = () => {
   return (
-    <UploadTemplate props={'등기부 등본 업로드'}>
-      <RegisterUploadForm />
-    </UploadTemplate>
+    <RegisterUploadView />
   );
 };
 

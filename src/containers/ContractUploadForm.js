@@ -27,6 +27,7 @@ const ContractUploadForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    
     console.log('서밋함');
     if(!pdfFile) {
       setMessage('Please select an PDF');
