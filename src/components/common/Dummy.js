@@ -1,19 +1,30 @@
-import React from 'react';
-import { styled } from 'styled-components';
+import React, { useState } from 'react';
+import FileViewForm from '../file/FileViewForm';
 
-const DummyBlock = styled.div`
-  margin: 2rem 0.5rem;
-  width: 95rem;
+const Dummy = ({imageUrls}) => {
 
-  @media (max-width: 1680px) {
-   width: 100%;
-   height: 50rem;
-  }
-`;
+  const itemsPerPage = 1; 
+  
+  const [page, setPage] = useState(1);
 
-const Dummy = () => {
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const imageUrlsPages = imageUrls.length
+
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentPageImages  = imageUrls.slice(startIndex, endIndex);
+
   return (
-    <DummyBlock />
+    <FileViewForm 
+    itemsPerPage = {itemsPerPage}
+    page = {page}
+    handleChangePage = {handleChangePage}
+    currentPageImages={currentPageImages}
+    imageUrlsPages = {imageUrlsPages}
+  />
   );
 };
 
