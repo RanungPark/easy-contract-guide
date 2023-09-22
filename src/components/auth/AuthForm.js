@@ -110,7 +110,7 @@ const AuthForm = ({type, form, check, onChange, onSubmit, onToggle, onAllToggle,
       </form>
       <Footer>
         {type === 'login' ? (
-          <Link to='/register'>회원가입</Link>
+          <Link to='/signup'>회원가입</Link>
         ) : (
           <Link to='/'>로그인</Link>
         )}
