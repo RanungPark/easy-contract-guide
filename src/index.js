@@ -9,7 +9,6 @@ import rootReducer, { rootSaga } from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter } from 'react-router-dom';
 import createSagaMiddleware from 'redux-saga';
-import { checkUser, tempSetUser } from './modules/user';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
