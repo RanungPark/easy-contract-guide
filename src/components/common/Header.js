@@ -52,8 +52,8 @@ const Header = () => {
           Easy Contract Guide  
           </Link>
           <Link to="/standard" className='headerList'>표준 계약서와 비교</Link>
-          <Link to="/standard" className='headerList'>건축물 대장과 비교</Link>
-          <Link to="/standard" className='headerList'>등기부 등본과 비교</Link>
+          <Link to="/building" className='headerList'>건축물 대장과 비교</Link>
+          <Link to="/register" className='headerList'>등기부 등본과 비교</Link>
           <Link to="/guide" className='headerList'>가이드</Link>
           <Link to="/upload/contract" className='headerList'>계약서 추가</Link>
           {
