@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UploadForm from '../components/upload/UploadForm';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { buildingUploadFileFailure, buildingUploadFileSuccess} from '../modules/file';
 
 const BuildingUploadForm = () => {
   const [pdfFile, setPdfFile] = useState(null);
   const [text, setText] = useState('');
   const [message, setMessage] = useState(false);
-  const contractId = 1;
+
+  const {building ,contractId} = useSelector(({file}) => 
+  ({
+    building: file.building,
+    contractId: file.contractId,
+   }))
+  const dispatch = useDispatch();
 
   const onChange = e => {
     const file = e.target.files[0];
@@ -35,13 +43,33 @@ const BuildingUploadForm = () => {
     })
     .then(function (response) {
       console.log(response.data);
-      setMessage(`File upload completed`);
+      dispatch(
+        buildingUploadFileSuccess({
+          form: 'building',
+          key: 'file',
+          value: response.data.data
+        })
+      )
     })
     .catch(function (error) {
       console.log(error.response.data);
-      setMessage(error.response.data.responseMessage)
+      dispatch(
+        buildingUploadFileFailure({
+          form: 'building',
+          key: 'file',
+          value: error.response.data
+        })
+      )
     })
   }
+
+  useEffect(() => {
+    const {error} = building
+    if(error) {
+      setMessage(error.responseMessage);
+      return;
+    }
+  },[building]);
 
   return (
     <UploadForm
