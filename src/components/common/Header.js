@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import palette from '../../libs/styles/palette';
 import { ResponsiveBig } from './Responsive';
 import { useSelector } from 'react-redux';
+import img from './logo3.png';
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -21,6 +22,10 @@ const Wrapper = styled(ResponsiveBig)`
     font-weight: 800;
     letter-spacing: 2px;
   }
+  .logoImg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
   .right {
     display: flex;
     align-items: center;
@@ -31,6 +36,11 @@ const Wrapper = styled(ResponsiveBig)`
     &:hover {
       color: ${palette.cyan[7]};
     }
+  }
+  .logoWrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 const UserIndo = styled.div`
@@ -49,7 +59,10 @@ const Header = () => {
       <HeaderBlock>
         <Wrapper>
           <Link to="/standard" className='logo'>
-          Easy Contract Guide  
+            <div className='logoWrapper'>
+              <img src={img} alt="logo" className='logoImg'/>
+              <div>Easy Contract Guide</div>
+            </div>
           </Link>
           <Link to="/standard" className='headerList'>표준 계약서와 비교</Link>
           <Link to="/building" className='headerList'>건축물 대장과 비교</Link>
