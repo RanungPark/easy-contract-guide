@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import { Link } from 'react-router-dom';
+import img from '../common/logo3.png'
 
 const AuthTemplateBlock = styled.div`
   position: absolute;
@@ -23,12 +24,18 @@ const WhiteBox = styled.div`
     text-align: center;
     font-weight: bold;
     letter-spacing: 2px;
+    color: ${palette.gray[6]};
   }
   box-shadow: 0 0 8px rgba(0,0,0,0.025);
   padding: 2rem;
   width: 360px;
   background: white;
   border-radius: 2px;
+
+  .logoImg {
+    width: 5rem;
+    height: 5rem;
+  }
 `
 
 const AuthTemplate = ({children}) => {
@@ -36,7 +43,12 @@ const AuthTemplate = ({children}) => {
     <AuthTemplateBlock>
       <WhiteBox>
         <div className='logo-area'>
-          <Link to='/'>Easy Contract Guide </Link>
+          <Link to='/'>
+            <div className='logoWrapper'>
+              <img src={img} alt="logo" className='logoImg'/>
+              <div>Easy Contract Guide</div>
+            </div>
+          </Link>
         </div>
         {children}
       </WhiteBox>

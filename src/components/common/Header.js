@@ -34,13 +34,17 @@ const Wrapper = styled(ResponsiveBig)`
     font-weight: 800;
     color: ${palette.gray[8]};
     &:hover {
-      color: ${palette.cyan[7]};
+      color: ${palette.cyan[5]};
     }
   }
   .logoWrapper{
     display:flex;
     justify-content: center;
     align-items: center;
+
+    &:hover {
+      color: ${palette.gray[7]};
+    }
   }
 `
 const UserIndo = styled.div`
