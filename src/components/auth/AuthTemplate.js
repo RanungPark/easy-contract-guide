@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import { Link } from 'react-router-dom';
-import img from '../common/logo3.png'
+import logoImg from '../../mock/img/logo3.png'
 
 const AuthTemplateBlock = styled.div`
   position: absolute;
@@ -45,7 +45,7 @@ const AuthTemplate = ({children}) => {
         <div className='logo-area'>
           <Link to='/'>
             <div className='logoWrapper'>
-              <img src={img} alt="logo" className='logoImg'/>
+              <img src={logoImg} alt="logo" className='logoImg'/>
               <div>Easy Contract Guide</div>
             </div>
           </Link>

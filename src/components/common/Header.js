@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import palette from '../../libs/styles/palette';
 import { ResponsiveBig } from './Responsive';
 import { useSelector } from 'react-redux';
-import img from './logo3.png';
+import logoImg from '../../mock/img/logo3.png';
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -64,7 +64,7 @@ const Header = () => {
         <Wrapper>
           <Link to="/standard" className='logo'>
             <div className='logoWrapper'>
-              <img src={img} alt="logo" className='logoImg'/>
+              <img src={logoImg} alt="logo" className='logoImg'/>
               <div>Easy Contract Guide</div>
             </div>
           </Link>
