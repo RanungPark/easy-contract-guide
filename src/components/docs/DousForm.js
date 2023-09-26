@@ -2,6 +2,8 @@ import React from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import Information from './Information';
+import Payment from './Payment';
+
 
 const DousFormBlock = styled.div`
   width: 75vw;
@@ -102,6 +104,7 @@ const DousForm = () => {
           <div className='headerWrapper'>
             <div className='header'>부동산임대차계약서</div>
           </div>
+          <Payment />
           <ArticleWrapper>
             <div className='header'>
               제 1조 (목적) 
