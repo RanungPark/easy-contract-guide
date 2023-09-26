@@ -13,7 +13,7 @@ const HeaderBlock = styled.div`
 `;
 
 const Wrapper = styled(ResponsiveBig)`
-  height: 4rem;
+  height: 7vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -73,6 +73,7 @@ const Header = () => {
           <Link to="/register" className='headerList'>등기부 등본과 비교</Link>
           <Link to="/guide" className='headerList'>가이드</Link>
           <Link to="/upload/contract" className='headerList'>계약서 추가</Link>
+          <Link to="/test" className='headerList'>계약서 작성</Link>
           {
             user ? (
               <div className='right'>

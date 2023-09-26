@@ -10,30 +10,18 @@ import AnalyzeTemplate from '../common/Analyze';
 import ContractResultForm from '../../containers/ContractResultForm';
 
 const StandardMainBlock = styled.div`
-  height: 100%;
+  height: 93vh;
   width: 100%;
   background: ${palette.gray[1]};
 `;
 
 const Wrapper = styled.div`
- padding-left: 1rem;
+  padding-left: 1rem;
   padding-right: 1rem;
   width: 1680px;
   margin: 0 auto;
   display: flex;
-
-  @media (max-width: 1680px) {
-    width: 1024px;
-    flex-direction: column;
-  }
-  
-  @media (max-width: 1024px) {
-    width: 768px;
-  }
-
-  @media (max-width: 768px) {
-    width: 100%
-  }
+  height: 92vh;
 `;
 
 const StandardMain = () => {
