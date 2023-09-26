@@ -7,6 +7,7 @@ const OptionFirstBlock = styled.div`
 
 const OptionBody = styled.div`
   background: ${palette.gray[1]};
+
   .title{
     color: ${palette.gray[6]};
     font-weight: bold;
@@ -55,18 +56,34 @@ const InputBox = styled.div`
   }
 `
 const OptionFirst = () => {
-  const [host, setHost] = useState(false);
-  const [tenant, setTenant] = useState(false);
+  const [hostRadio, setHostRadio] = useState(false);
+  const [tenantRadio, setTenantRadio] = useState(false);
+  const [hostInput, setHostInput] = useState('');
+  const [tenantInput, setTenantInput] = useState('');
 
   const handleHostClick = (e) => {
-    console.log(e.target.value);
-    setHost(e.target.value);
+    setHostRadio(e.target.value);
   }
 
   const handleTenantClick = (e) => {
-    console.log(e.target.value);
-    setTenant(e.target.value);
+    setTenantRadio(e.target.value);
   }
+
+  const handleHostChange = (e) => {
+    setHostInput(e.target.value);
+  }
+
+  const handleTenantChange = (e) => {
+    setTenantInput(e.target.value);
+  }
+
+  useEffect(() => {
+    setHostInput('');
+  },[setHostInput, hostRadio]);
+
+  useEffect(() => {
+    setTenantInput('');
+  },[setTenantInput, tenantRadio]);
 
   return (
     <OptionFirstBlock>
@@ -88,10 +105,10 @@ const OptionFirst = () => {
           </div>
           </div>
           {
-            host !== false && <>
+            hostRadio !== false && <>
               <InputBox>
-                <label>{host}</label>
-                <input type='text' placeholder='입력'/>
+                <label htmlFor='hostInput'>{hostRadio}</label>
+                <input id="hostInput" type='text' placeholder='입력' value={hostInput} onChange={handleHostChange}/>
               </InputBox>
             </>
           }
@@ -113,10 +130,10 @@ const OptionFirst = () => {
           </div>
           </div>  
           {
-            tenant !== false && <>
+            tenantRadio !== false && <>
               <InputBox>
-                <label>{tenant}</label>
-                <input type='text' placeholder='입력'/>
+                <label htmlFor='tenantInput'>{tenantRadio}</label>
+                <input id="tenantInput" type='text' placeholder='입력' value={tenantInput} onChange={handleTenantChange}/>
               </InputBox>
             </>
           }
