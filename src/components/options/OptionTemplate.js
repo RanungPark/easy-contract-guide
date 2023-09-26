@@ -43,7 +43,7 @@ const OptionHeader = styled.div`
 `
 
 const OptionWrapper = styled.div`
-  width:25rem;
+  width:20vw;
   margin-top: 1rem;
 `
 
