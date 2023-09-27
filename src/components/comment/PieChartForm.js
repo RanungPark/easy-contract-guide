@@ -17,7 +17,7 @@ const PieChartFormBlock = styled.div`
 const PieChartHeader = styled.div`
   font-weight: 800;
   font-size: 1.125rem;
-  color: ${palette.cyan[5]};
+  color: #3DA5F5;
   margin-bottom: 1rem;
 `
 const PieChartComment = styled.div`
@@ -60,7 +60,7 @@ const PieChartForm = () => {
           data={[
             {
             value: result.rate,
-            color: '#3bc9db',
+            color: '#8fc9f5',
             name: 'name1',
             },
           ]}

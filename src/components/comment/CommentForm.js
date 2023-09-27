@@ -43,7 +43,7 @@ const Comment = styled.div`
 
   b {
     font-size: 1.25rem;
-    color: ${palette.cyan[5]};
+    color: #3DA5F5;
   }
 `
 
