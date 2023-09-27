@@ -34,7 +34,7 @@ const Wrapper = styled(ResponsiveBig)`
     font-weight: 800;
     color: ${palette.gray[8]};
     &:hover {
-      color: ${palette.cyan[5]};
+      color: #3DA5F5;
     }
   }
   .logoWrapper{
@@ -72,7 +72,7 @@ const Header = () => {
           <Link to="/building" className='headerList'>건축물 대장과 비교</Link>
           <Link to="/register" className='headerList'>등기부 등본과 비교</Link>
           <Link to="/upload/contract" className='headerList'>계약서 추가</Link>
-          <Link to="/test" className='headerList'>계약서 작성 가이드</Link>
+          <Link to="/dous" className='headerList'>계약서 작성 가이드</Link>
           <Link to="/guide" className='headerList'>사용자 사용 가이드</Link>
           {
             user ? (
