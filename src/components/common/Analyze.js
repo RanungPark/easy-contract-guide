@@ -11,7 +11,7 @@ const AnalyzeTemplateBlock = styled.div`
   flex-direction: column;
   justify-content:center;
   align-items: center;
-  height:50rem; 
+  height:49rem; 
  
   @media (max-width: 1680px) {
    width: 100%;
