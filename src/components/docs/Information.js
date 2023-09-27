@@ -13,6 +13,13 @@ const InformationWrapper = styled.div`
     color: ${palette.gray[6]};
   }
 
+  .red {
+    margin-top: 2rem;
+    color: #ef6681;
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+
   .header {
     font-size: 1.05rem;
     font-weight: bold;
@@ -127,6 +134,9 @@ const Information = () => {
           </Informations>
           </>)
         }
+        <div className='red'>
+          주택임대차 관련 분쟁은 전문가로 구성된 대한법률구조공단 분쟁조정위원회에게 신속하고 효율적으로 해결할 수 있습니다 (국번없는 132)
+        </div>
       </InformationWrapper>
     </InformationBlock >
   );
