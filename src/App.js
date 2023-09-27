@@ -10,6 +10,7 @@ import StandardViewPage from './pages/StandardViewPage';
 import GuidePage from './pages/GuidePage';
 import BuildingViewPage from './pages/BuildingViewPage';
 import RegisterViewPage from './pages/RegisterViewPage';
+import DousPage from './pages/DousPage';
 
 const App = () => {
   return (
@@ -22,8 +23,9 @@ const App = () => {
       <Route path='/upload/building' element={<BuildingUploadPage />} />
       <Route path='/upload/register' element={<RegisterUploadPage />} />
       <Route path='/upload/contract' element={<ContractUploadPage />} />
-      <Route path='/test' element={<TestPage />} />
+      <Route path='/dous' element={<DousPage />} />
       <Route path='/guide' element={<GuidePage />} />
+      <Route path='/test' element={<TestPage />} />
     </Routes>
   );
 };
