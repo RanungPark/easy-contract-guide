@@ -8,7 +8,7 @@ import RealEstate from './RealEstate';
 
 
 const DousFormBlock = styled.div`
-  width: 75vw;
+  width: 79vw;
   background: ${palette.gray[4]};
   height: 93vh;
   display: flex;
