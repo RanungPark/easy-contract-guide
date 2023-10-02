@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import dayjs from 'dayjs';
@@ -9,42 +9,46 @@ const OptionSecondBlock = styled.div`
 `;
 
 const OptionBody = styled.div`
-
   background: ${palette.gray[1]};
+  font-size: 0.9rem;
+
   .title{
     color: ${palette.gray[6]};
     font-weight: bold;
   }
-  .radioItem {
-    margin-right: 0.5rem;
-    
-  }
-  .radioBox {
-    display: flex;
-  }
-  font-size: 0.9rem;
 `
 
 const RadioWrapper = styled.div`
   padding: 0.7rem;
+  padding-bottom: 0;
+`
+
+const RadioBox = styled.div`
+  display: flex;
+  margin-top: 0.7rem;
+
+  input {
+    &.marginLeftAdd {
+      margin-left: 2rem;
+    }
+  }
 `
 
 const InputWrapper = styled.div`
-  display: flex;
   padding: 0.7rem;
-  justify-content: space-between;
+  padding-top: 0;
 `
 
 const InputBox = styled.div`
-  
-`
-
-const InputItem = styled.div`
-  margin-top: 1rem;
+  margin-top: 0.7rem;
   background: white;
   border: 0.5px solid #3DA5F5;
   border-radius: 25px;
-  
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   input,
   label {
     border: none;
@@ -52,106 +56,125 @@ const InputItem = styled.div`
     font-size: 1rem;
     padding: 0.5rem;
   } 
-
-  input {
+  
+  input{
+    margin-right:0.5rem;
+    max-width:100%;
     min-width: 0;
-    max-width: 7rem;
     flex: 1;
     background: white;
     color: ${palette.gray[7]};
     &::placeholder {
       color: #a0a0a0;
-      font-size: 0.9rem;   
+      font-size: 0.9rem;
     }
   }
-
+  
   label {
     font-size: 0.9rem;
   }
 
   span {
     padding-right:0.5rem;
+    display: inline-block;
   }
-`
-
-const DatePickerItem = styled.div`
-  margin: 1rem;
 `
 
 const DateWrapper = styled.div`
   padding: 0.7rem;
+  `
+
+const DateBox = styled.div`
+  margin: 1rem;
+  margin-bottom: 0;
 `
 
 const OptionSecond = () => {
   const [type, setType] = useState('');
 
+  const [startDay, setStartDay] = useState(dayjs('2023-09-26'));
+  const [endDay, setEndDay] = useState(dayjs('2023-10-26'));
 
-  const [startDay, setStartDay] = React.useState(dayjs('2023-09-26'));
-  const [endDay, setEndDay] = React.useState(dayjs('2023-10-26'));
+  const [monthlyRent, setMonthlyRent] = useState('');
+  const [paymentDate, setPaymentDate] = useState('');
 
   const handleTypeClick = (e) => {
     setType(e.target.value);
   }
 
+  useEffect(() => {
+    setMonthlyRent('');
+    setPaymentDate('');
+  },[setMonthlyRent, setPaymentDate, type]);
+
   return (
     <OptionSecondBlock>
       <OptionBody>
+
         <RadioWrapper>
           <div className='title'>임대차 계약의 종류</div>
-          <div className='radioBox'>
-            <div className='radioItem'>
-              <input type="radio" id="월세" name="content" value="월세" onClick={handleTypeClick}/>
-              <label for="월세">월세 및 반전세</label>
-            </div>
-            <div className='radioItem'>
-              <input type="radio" id="전세" name="content" value="전세" onClick={handleTypeClick}/>
-              <label for="전세">전세</label>
-            </div>
-          </div>
+          <RadioBox>
+            <input type="radio" id="월세 및 반전세" name="type" value="월세 및 반전세" onClick={handleTypeClick}/>
+            <label for="월세 및 반전세">월세 및 반전세</label>
+            <input className="marginLeftAdd" type="radio" id="전세" name="type" value="전세" onClick={handleTypeClick}/>
+            <label for="전세">전세</label>
+          </RadioBox>
         </RadioWrapper>
 
        <DateWrapper>
-       <div className='title'>임대차 계약기간</div>
-
-       <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePickerItem>
-          <DatePicker 
-            label="시작일"
-            value={startDay}
-            onChange={(newValue) => setStartDay(newValue)}
-          />
-          </DatePickerItem>
-          <DatePickerItem>
-          <DatePicker
-            label="종료일"
-            value={endDay}
-            onChange={(newValue) => setEndDay(newValue)}
-          />
-          </DatePickerItem>
+        <div className='title'>임대차 계약기간</div>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateBox>
+            <DatePicker 
+              label="시작일"
+              value={startDay}
+              onChange={(newValue) => setStartDay(newValue)}
+            />
+          </DateBox>
+          <DateBox>
+            <DatePicker
+              label="종료일"
+              value={endDay}
+              onChange={(newValue) => setEndDay(newValue)}
+            />
+          </DateBox>
         </LocalizationProvider>
        </DateWrapper>
+
         {
-          type === '월세' ? <>
+          type === '월세 및 반전세' ? <>
             <InputWrapper>
+              <div className='title'>월세금액</div>
               <InputBox>
-                <div className='title'>월세금액</div>
-                <InputItem>
-                  <label htmlFor='금액'>금액</label>
-                  <input id="금액" type='text' placeholder='입력'/>
-                  <span>원</span>
-                </InputItem>
+                <label htmlFor='월세금액'>금액</label>
+                <input
+                  id="월세금액"
+                  type='text'
+                  placeholder='월세금액 입력'
+                  value={monthlyRent}
+                  onChange={e => setMonthlyRent(e.target.value)}
+                />
+                <span>원</span>
               </InputBox>
+            </InputWrapper>
+
+            <InputWrapper>
+              <div className='title'>지불일</div>
               <InputBox>
-                <div className='title'>지불일</div>
-                <InputItem>
-                  <label htmlFor='매월'>매월</label>
-                  <input id='매월' type='text' placeholder='입력'/>
-                  <span>일</span>
-                </InputItem>
+                <label htmlFor='지불일'>매월</label>
+                <input
+                  id='지불일'
+                  type='text'
+                  placeholder='지불일 입력'
+                  value={paymentDate}
+                  onChange={e => setPaymentDate(e.target.value)}
+                />
+                <span>일</span>
               </InputBox>
             </InputWrapper>
           </> : <></>
         }
+
       </OptionBody>
     </OptionSecondBlock >
   );
