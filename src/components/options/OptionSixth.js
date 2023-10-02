@@ -94,7 +94,7 @@ const OptionSixth = () => {
             <InputBox>
               <input
                 type='text'
-                placeholder='입력'
+                placeholder='법인명 입력'
               />
             </InputBox>
             </InputWrapper>
@@ -104,7 +104,7 @@ const OptionSixth = () => {
               <InputBox>
                 <input 
                   type='text'
-                  placeholder='입력'
+                  placeholder='대표이사 입력'
                 />
               </InputBox>
             </InputWrapper>
@@ -114,7 +114,7 @@ const OptionSixth = () => {
               <InputBox>
                 <input
                   type='text'
-                  placeholder='입력'
+                  placeholder='개인사업자 입력'
                 />
               </InputBox>
             </InputWrapper>
@@ -124,7 +124,7 @@ const OptionSixth = () => {
               <InputBox>
                 <input
                   type='text'
-                  placeholder='입력'
+                  placeholder='사업주명 입력'
                 />
               </InputBox>
             </InputWrapper>
@@ -134,7 +134,7 @@ const OptionSixth = () => {
               <InputBox>
                 <input
                   type='text'
-                  placeholder='입력'
+                  placeholder='성명 입력'
                 />
               </InputBox>
             </InputWrapper>
@@ -144,7 +144,7 @@ const OptionSixth = () => {
               <InputBox>
                 <input
                   type='text'
-                  placeholder='입력'
+                  placeholder='주민번호 입력'
                 />
               </InputBox>
             </InputWrapper>
