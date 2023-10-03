@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import Address from '../common/Address';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeAddress, changePhoneNum, changeRestAddress, changeTenantInputFirst, changeTenantInputSecond } from '../../modules/optionSeventh';
+import { changeTenantAddress, changeTenantPhoneNum, changeTenantRestAddress, changeTenantInputFirst, changeTenantInputSecond } from '../../modules/optionSeventh';
 
 const OptionSeventhBlock = styled.div``;
 
@@ -79,30 +79,26 @@ const AddresBox = styled.div`
 
 
 const OptionSeventh = () => {
-  // const [tenantInputFirst, setInputFirst] = useState('')
-  // const [tenantInputSecond, setInputSecond] = useState('')
   const [address, setAddress] = useState('')
-  // const [restAddress, setRestAddress] = useState('')
-  // const [phoneNum, setPhoneNum] = useState('')
 
   const dispatch = useDispatch();
   const {
     tenantType,
     tenantInputFirst,
     tenantInputSecond,
-    restAddress,
-    phoneNum
+    tenantRestAddress,
+    tenantPhoneNum
     } = useSelector(({optionFirst, optionSeventh}) => ({
       tenantType: optionFirst.tenantType,
       tenantInputFirst: optionSeventh.tenantInputFirst,
       tenantInputSecond: optionSeventh.tenantInputSecond,
-      restAddress: optionSeventh.restAddress,
-      phoneNum: optionSeventh.phoneNum,
+      tenantRestAddress: optionSeventh.tenantRestAddress,
+      tenantPhoneNum: optionSeventh.tenantPhoneNum,
       }))
 
   const handleChnageAddress = (fullAddress) => {
     setAddress(fullAddress)
-    dispatch(changeAddress(fullAddress))
+    dispatch(changeTenantAddress(fullAddress))
   };
 
   return (
@@ -195,8 +191,8 @@ const OptionSeventh = () => {
               <input
                 type='text'
                 placeholder='상세주소를 입력해주세요'
-                value={restAddress}
-                onChange={(e) => dispatch(changeRestAddress(e.target.value))}
+                value={tenantRestAddress}
+                onChange={(e) => dispatch(changeTenantRestAddress(e.target.value))}
               />
             </InputBox>
           </AddressWrapper>
@@ -207,8 +203,8 @@ const OptionSeventh = () => {
               <input
                 type='text'
                 placeholder='전호번호 입력'
-                value={phoneNum}
-                onChange={(e) => dispatch(changePhoneNum(e.target.value))}
+                value={tenantPhoneNum}
+                onChange={(e) => dispatch(changeTenantPhoneNum(e.target.value))}
               />
             </InputBox>
           </InputWrapper>

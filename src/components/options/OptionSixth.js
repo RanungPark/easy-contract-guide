@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import Address from '../common/Address';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeAddress, changeHostInputFirst, changeHostInputSecond, changePhoneNum, changeRestAddress } from '../../modules/optionSixth';
+import { changeHostAddress, changeHostInputFirst, changeHostInputSecond, changeHostPhoneNum, changeHostRestAddress } from '../../modules/optionSixth';
 
 const OptionSixthBlock = styled.div``;
 
@@ -85,19 +85,19 @@ const OptionSixth = () => {
     hostType,
     hostInputFirst,
     hostInputSecond,
-    restAddress,
-    phoneNum
+    hostRestAddress,
+    hostPhoneNum
     } = useSelector(({optionFirst, optionSixth}) => ({
         hostType: optionFirst.hostType,
         hostInputFirst: optionSixth.hostInputFirst,
         hostInputSecond: optionSixth.hostInputSecond,
-        restAddress: optionSixth.restAddress,
-        phoneNum: optionSixth.phoneNum,
+        hostRestAddress: optionSixth.hostRestAddress,
+        hostPhoneNum: optionSixth.hostPhoneNum,
       }))
 
     const handleChnageAddress = (fullAddress) => {
       setAddress(fullAddress)
-      dispatch(changeAddress(fullAddress))
+      dispatch(changeHostAddress(fullAddress))
     };
 
   return (
@@ -190,8 +190,8 @@ const OptionSixth = () => {
               <input
                 type='text'
                 placeholder='상세주소를 입력해주세요'
-                value={restAddress}
-                onChange={(e) => dispatch(changeRestAddress(e.target.value))}
+                value={hostRestAddress}
+                onChange={(e) => dispatch(changeHostRestAddress(e.target.value))}
               />
             </InputBox>
           </AddressWrapper>
@@ -202,8 +202,8 @@ const OptionSixth = () => {
               <input
                 type='text'
                 placeholder='전호번호 입력'
-                value={phoneNum}
-                onChange={(e) => dispatch(changePhoneNum(e.target.value))}
+                value={hostPhoneNum}
+                onChange={(e) => dispatch(changeHostPhoneNum(e.target.value))}
               />
             </InputBox>
           </InputWrapper>
