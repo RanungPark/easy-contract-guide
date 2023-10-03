@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import { useDispatch, useSelector } from 'react-redux';
@@ -56,18 +56,6 @@ const OptionFourth = () => {
   const [builtInToggle, setBuiltInToggle] = useState(false);
   const [cleaningToggle , setCleaningToggle] = useState(false);
   const [directToggle, setDirectToggle] = useState(false);
-
-  // useEffect(() => {
-  //   setBuiltIn('')
-  // },[setBuiltIn,builtInToggle]);
-
-  // useEffect(() => {
-  //   setCleaning('')
-  // },[setCleaning, cleaningToggle]);
-
-  // useEffect(() => {
-  //   setDirect('')
-  // },[setDirect, directToggle]);
   
   const dispatch = useDispatch();
   const {builtIn, cleaning, direct} = useSelector(({optionFourth}) => ({
