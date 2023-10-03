@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeBuiltIn, changeCleaning, changeDirect } from '../../modules/optionFourth';
 
 const OptionFourthBlock = styled.div``;
 
@@ -52,23 +54,27 @@ const InputBox = styled.div`
 
 const OptionFourth = () => {
   const [builtInToggle, setBuiltInToggle] = useState(false);
-  const [builtIn, setBuiltIn] = useState('');
   const [cleaningToggle , setCleaningToggle] = useState(false);
-  const [cleaning , setCleaning] = useState('');
   const [directToggle, setDirectToggle] = useState(false);
-  const [direct, setDirect] = useState('');
 
-  useEffect(() => {
-    setBuiltIn('')
-  },[setBuiltIn,builtInToggle]);
+  // useEffect(() => {
+  //   setBuiltIn('')
+  // },[setBuiltIn,builtInToggle]);
 
-  useEffect(() => {
-    setCleaning('')
-  },[setCleaning, cleaningToggle]);
+  // useEffect(() => {
+  //   setCleaning('')
+  // },[setCleaning, cleaningToggle]);
 
-  useEffect(() => {
-    setDirect('')
-  },[setDirect, directToggle]);
+  // useEffect(() => {
+  //   setDirect('')
+  // },[setDirect, directToggle]);
+  
+  const dispatch = useDispatch();
+  const {builtIn, cleaning, direct} = useSelector(({optionFourth}) => ({
+    builtIn:optionFourth.builtIn,
+    cleaning:optionFourth.cleaning,
+    direct:optionFourth.direct,
+  }))
 
   return (
     <OptionFourthBlock>
@@ -88,7 +94,8 @@ const OptionFourth = () => {
                 type='text'
                 placeholder='빌트인 제품 입력'
                 value={builtIn}
-                onChange={e => setBuiltIn(e.target.value)}
+                onChange={(e) => dispatch(changeBuiltIn(e.target.value))}
+                
               />
             </InputBox>
           }
@@ -108,7 +115,7 @@ const OptionFourth = () => {
                 type='text'
                 placeholder='청소비 입력'
                 value={cleaning}
-                onChange={e => setCleaning(e.target.value)}
+                onChange={(e) => dispatch(changeCleaning(e.target.value))}
               />
             </InputBox>
           }
@@ -128,7 +135,7 @@ const OptionFourth = () => {
                 type='text'
                 placeholder='직접입력'
                 value={direct}
-                onChange={e => setDirect(e.target.value)}
+                onChange={(e) => dispatch(changeDirect(e.target.value))}
               />
             </InputBox>
           }

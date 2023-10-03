@@ -92,7 +92,6 @@ const DateBox = styled.div`
 `
 
 const OptionSecond = () => {
-
   const [startDay, setStartDay] = useState(dayjs('2023-09-26'));
   const [endDay, setEndDay] = useState(dayjs('2023-10-26'));
 

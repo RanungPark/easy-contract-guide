@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { useDispatch, useSelector } from 'react-redux';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { changeAccountHolder, changeAccountNumber, changeBalance, changeBalancePaymentDay, changeBankName, changeCharge, changeChargePaymentDate, changeDownPayment, changeMiddlePayment, changeMiddlePaymentDay, changePayer, changeSubsidy, togglePaid } from '../../modules/optionThird';
 
 const OptionThirdBlock = styled.div``;
 
@@ -76,11 +77,6 @@ const InputBox = styled.div`
   }
 `
 
-const DateWrapper = styled.div`
-  padding: 0.7rem;
-  padding-bottom: 0;
-  `
-
 const DateBox = styled.div`
   margin: 1rem;
   margin-bottom: 0;
@@ -98,32 +94,58 @@ const RadioBox = styled.div`
 `
 
 const OptionThird = () => {
-
-  const [subsidy, setSubsidy] = useState('');
-
-  const [downPayment, setDownPayment] = useState('');
-  const [payer, setPayer] = useState('');
-
-  const [middlePayment, setMiddlePayment] = useState('');
   const [middlePaymentToggle, setMiddlePaymentToggle] = useState(false);
   const [middlePaymentDay, setMiddlePaymentDay] = useState(dayjs('2023-09-26'));
 
-  const [balance, setBalance] = useState('');
   const [balanceToggle, setBalanceToggle] = useState(false);
   const [balancePaymentDay, setBalancePaymentDay] = useState(dayjs('2023-09-26'));
 
-  const [charge, setCharge] = useState('');
-  const [chargeToggle, setChargeToggle] = useState('');
-  const [chargePaymentDate, setChargePaymentDate] = useState('')
-
-  const [bankName, setBankName] = useState(false);
-  const [accountNumber, setAccountNumber] = useState('');
-  const [accountHolder, setAccountHolder] = useState('');
+  const [chargeToggle, setChargeToggle] = useState(false);
 
   const dispatch = useDispatch();
-  const {type} = useSelector(({optionSecond}) => ({
-    type: optionSecond.type,
-  }))
+  const {
+    type,
+    subsidy,
+    downPayment,
+    payer,
+    middlePayment,
+    balance,
+    paid,
+    charge,
+    chargePaymentDate,
+    bankName,
+    accountNumber,
+    accountHolder,
+    } = useSelector(({optionSecond, optionThird}) => ({
+        type: optionSecond.type,
+        subsidy: optionThird.subsidy,
+        downPayment: optionThird.downPayment,
+        payer: optionThird.payer,
+        middlePayment: optionThird.middlePayment,
+        balance: optionThird.balance,
+        paid: optionThird.paid,
+        charge: optionThird.charge,
+        chargePaymentDate: optionThird.chargePaymentDate,
+        bankName: optionThird.bankName,
+        accountNumber: optionThird.accountNumber,
+        accountHolder: optionThird.accountHolder,
+      }))
+
+  const handleMiddlePaymentDayChange = (newValue) => {
+    setMiddlePaymentDay(newValue)
+    const middlePaymentDay = newValue.$y + '년' + (newValue.$M + 1) + '월' + newValue.$D + '일'
+    dispatch(
+      changeMiddlePaymentDay(middlePaymentDay)
+    )
+  }
+
+  const handleBalancePaymentDayChange = (newValue) => {
+    setBalancePaymentDay(newValue)
+    const balancePaymentDay = newValue.$y + '년' + (newValue.$M + 1) + '월' + newValue.$D + '일'
+    dispatch(
+      changeBalancePaymentDay(balancePaymentDay)
+    )
+  }
 
   return (
     <OptionThirdBlock>
@@ -142,7 +164,7 @@ const OptionThird = () => {
                     type='text'
                     placeholder='보증금 입력'
                     value={subsidy}
-                    onChange={e => setSubsidy(e.target.value)}
+                    onChange={(e) => dispatch(changeSubsidy(e.target.value))}
                   />
                   <span>원</span>
                 </InputBox>
@@ -155,7 +177,7 @@ const OptionThird = () => {
                     type='text'
                     placeholder='전세 보증금 입력'
                     value={subsidy}
-                    onChange={e => setSubsidy(e.target.value)}
+                    onChange={(e) => dispatch(changeSubsidy(e.target.value))}
                   />
                   <span>원</span>
                 </InputBox>
@@ -172,7 +194,7 @@ const OptionThird = () => {
                 type='text'
                 placeholder='계약금 입력'
                 value={downPayment}
-                onChange={e => setDownPayment(e.target.value)}
+                onChange={(e) => dispatch(changeDownPayment(e.target.value))}
               />
               <span>원</span>
             </InputBox>
@@ -181,6 +203,7 @@ const OptionThird = () => {
                 type='text'
                 placeholder='영수자 입력'
                 value={payer}
+                onChange={(e) => dispatch(changePayer(e.target.value))}
               />
             </InputBox>
           </InputWrapper>
@@ -202,7 +225,7 @@ const OptionThird = () => {
                     type='text'
                     placeholder='중도금 입력'
                     value={middlePayment}
-                    onChange={e => setMiddlePayment(e.target.value)}
+                    onChange={(e) => dispatch(changeMiddlePayment(e.target.value))}
                   />
                   <span>원</span>
                 </InputBox>
@@ -212,7 +235,7 @@ const OptionThird = () => {
                     <DatePicker 
                       label="중도금 지급일"
                       value={middlePaymentDay}
-                      onChange={(newValue) => setMiddlePaymentDay(newValue)}
+                      onChange={handleMiddlePaymentDayChange}
                     />
                   </DateBox>
                 </LocalizationProvider>
@@ -237,7 +260,7 @@ const OptionThird = () => {
                     type='text'
                     placeholder='잔금 입력'
                     value={balance}
-                    onChange={e => setBalance(e.target.value)}
+                    onChange={(e) => dispatch(changeBalance(e.target.value))}
                   />
                   <span>원</span>
                 </InputBox>
@@ -247,7 +270,7 @@ const OptionThird = () => {
                     <DatePicker 
                       label="잔금 지급일"
                       value={balancePaymentDay}
-                      onChange={(newValue) => setBalancePaymentDay(newValue)}
+                      onChange={handleBalancePaymentDayChange}
                     />
                   </DateBox>
                 </LocalizationProvider>
@@ -269,16 +292,18 @@ const OptionThird = () => {
                   <input
                     type="radio"
                     id="선불"
-                    name='type'
+                    name='paid'
                     value='선불'
+                    onClick={e => dispatch(togglePaid(e.target.value))}
                   />
                   <label for="선불">선불</label>
                   <input
                     className="marginLeftAdd"
                     type="radio"
                     id="후불"
-                    name='type'
+                    name='paid'
                     value='후불'
+                    onClick={e => dispatch(togglePaid(e.target.value))}
                   />
                   <label for="후불">후불</label>
                 </RadioBox>
@@ -290,6 +315,7 @@ const OptionThird = () => {
                     type='text'
                     placeholder='차임액 입력'
                     value={charge}
+                    onChange={(e) => dispatch(changeCharge(e.target.value))}
                   />
                   <span>원</span>
                 </InputBox>
@@ -299,6 +325,7 @@ const OptionThird = () => {
                     type='text'
                     placeholder='차임 지급일 입력'
                     value={chargePaymentDate}
+                    onChange={(e) => dispatch(changeChargePaymentDate(e.target.value))}
                   />
                   <span>일</span>
                 </InputBox>
@@ -315,7 +342,8 @@ const OptionThird = () => {
                 type='text'
                 placeholder='은행명 입력'
                 value={bankName}
-                onChange={e => setBankName(e.target.value)}
+                onChange={(e) => dispatch(changeBankName(e.target.value))}
+
               />
             </InputBox>
             <InputBox>
@@ -325,7 +353,7 @@ const OptionThird = () => {
                 type='text'
                 placeholder='계좌번호 입력'
                 value={accountNumber}
-                onChange={e => setAccountNumber(e.target.value)}
+                onChange={(e) => dispatch(changeAccountNumber(e.target.value))}
               />
             </InputBox>
             <InputBox>
@@ -335,7 +363,7 @@ const OptionThird = () => {
                 type='text'
                 placeholder='예금주 입력'
                 value={accountHolder}
-                onChange={e => setAccountHolder(e.target.value)}
+                onChange={(e) => dispatch(changeAccountHolder(e.target.value))}
               />
             </InputBox>
           </InputWrapper>
