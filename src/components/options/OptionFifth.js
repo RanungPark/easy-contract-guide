@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import Address from '../common/Address';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeAddress, changeBuildingUse, changeBuildingUseArea, changeLandUse, changeLandUseArea, changeRentableSpace, changeRentableSpaceArea, changeRestAddress } from '../../modules/optionFifth';
 
 const OptionFifthBlock = styled.div``;
 
@@ -89,8 +91,37 @@ const AddresBox = styled.div`
 `
 
 const OptionFifth = () => {
-  const [address, setAddress] = useState('')
-  const [restAddress, setRestAddress] = useState('')
+  const [address, setAddress] = useState('');
+
+  const [landUseToggle, setLandUseToggle] = useState(false);
+
+  const [buildingUseToggle, setBuildingUseToggle] = useState(false);
+
+  const [rentableSpaceToggle, setRentableSpaceToggle] = useState(false);
+
+  const dispatch = useDispatch();
+  const {
+    restAddress, 
+    landUse, 
+    landUseArea, 
+    buildingUse, 
+    buildingUseArea, 
+    rentableSpace, 
+    rentableSpaceArea
+    } = useSelector(({optionFifth}) => ({
+      restAddress: optionFifth.restAddress,
+      landUse: optionFifth.landUse,
+      landUseArea: optionFifth.landUseArea,
+      buildingUse: optionFifth.buildingUse,
+      buildingUseArea: optionFifth.buildingUseArea,
+      rentableSpace: optionFifth.rentableSpace,
+      rentableSpaceArea: optionFifth.rentableSpaceArea,
+      }))
+
+  const handleChnageAddress = (fullAddress) => {
+    setAddress(fullAddress)
+    dispatch(changeAddress(fullAddress))
+  }
 
   return (
     <OptionFifthBlock>
@@ -99,56 +130,115 @@ const OptionFifth = () => {
         <AddressWrapper>
           <div className='title'>소재지</div>
           <AddresBox >
-            <Address setAddress={setAddress} address={address}/>
+            <Address handleChnageAddress={handleChnageAddress} address={address}/>
           </AddresBox>
           <InputBox>
-            <input type='text' placeholder='상세주소를 입력해주세요'/>
+            <input
+              type='text'
+              placeholder='상세주소를 입력해주세요'
+              value={restAddress}
+              onChange={(e) => dispatch(changeRestAddress(e.target.value))}
+            />
           </InputBox>
         </AddressWrapper>
 
         <CheckWrapper>
-          <input type="checkbox" />
-          <label className="title" htmlFor="">토지용도</label>
-          <InputBox>
-            <input type='text' placeholder='토지용도 입력'/>
-          </InputBox>
-          <InputBox>
-            <div>
-              <label htmlFor='잔금'>면적</label>
-              <input type='text' placeholder='토지용도 면적 입력'/>
-            </div>
-            <span>m²</span>
-          </InputBox>
+          <input 
+            id='토지용도'
+            type="checkbox"
+            onClick={() => setLandUseToggle(!landUseToggle)}
+          />
+          <label className="title" htmlFor="토지용도">토지용도</label>
+          {
+            landUseToggle &&
+            <>
+              <InputBox>
+                <input
+                  type='text'
+                  placeholder='토지용도 입력'
+                  value={landUse}
+                  onChange={(e) => dispatch(changeLandUse(e.target.value))}
+                />
+              </InputBox>
+              <InputBox>
+                <label htmlFor='토지용도 면적 입력'>면적</label>
+                <input
+                  id='토지용도 면적 입력'
+                  type='text'
+                  placeholder='토지용도 면적 입력'
+                  value={landUseArea}
+                  onChange={(e) => dispatch(changeLandUseArea(e.target.value))}
+                />
+                <span>m²</span>
+              </InputBox>
+            </>
+          }
         </CheckWrapper>
 
         <CheckWrapper>
-          <input type="checkbox" />
-          <label className="title" htmlFor="">건물 구조⋅용도</label>
-          <InputBox>
-            <input type='text' placeholder='건물 구조⋅용도 입력'/>
-          </InputBox>
-          <InputBox>
-            <div>
-              <label htmlFor='잔금'>면적</label>
-              <input type='text' placeholder='건물 구조⋅용도 면적 입력'/>
-            </div>
-            <span>m²</span>
-          </InputBox>
+          <input
+            id='건물 구조⋅용도'
+            type="checkbox"
+            onClick={() => setBuildingUseToggle(!buildingUseToggle)}
+          />
+          <label className="title" htmlFor="건물 구조⋅용도">건물 구조⋅용도</label>
+          {
+            buildingUseToggle &&
+            <>
+              <InputBox>
+                <input
+                  type='text'
+                  placeholder='건물 구조⋅용도 입력'
+                  value={buildingUse}
+                  onChange={(e) => dispatch(changeBuildingUse(e.target.value))}
+                />
+              </InputBox>
+              <InputBox>
+                <label htmlFor='건물 구조⋅용도 면적 입력'>면적</label>
+                <input
+                  id='건물 구조⋅용도 면적 입력'
+                  type='text'
+                  placeholder='건물 구조⋅용도 면적 입력'
+                  value={buildingUseArea}
+                  onChange={(e) => dispatch(changeBuildingUseArea(e.target.value))}
+                />
+                <span>m²</span>
+              </InputBox>
+            </>
+          }
         </CheckWrapper>
 
         <CheckWrapper className='paddingBottomAdd'>
-          <input type="checkbox" />
-          <label className="title" htmlFor="">임대할 부분</label>
-          <InputBox>
-            <input type='text' placeholder='임대할 부분 입력'/>
-          </InputBox>
-          <InputBox>
-            <div>
-              <label htmlFor='잔금'>면적</label>
-              <input type='text' placeholder='임대할 부분 면적 입력'/>
-            </div>
-            <span>m²</span>
-          </InputBox>
+          <input 
+          id='임대할 부분'
+          type="checkbox"
+          onClick={() => setRentableSpaceToggle(!rentableSpaceToggle)}
+          />
+          <label className="title" htmlFor="임대할 부분">임대할 부분</label>
+          {
+            rentableSpaceToggle &&
+            <>
+              <InputBox>
+                <input
+                  type='text'
+                  placeholder='임대할 부분 입력'
+                  value={rentableSpace}
+                  onChange={(e) => dispatch(changeRentableSpace(e.target.value))}
+                />
+              </InputBox>
+              <InputBox>
+                <label htmlFor='임대할 부분 면적 입력'>면적</label>
+                <input
+                  id='임대할 부분 면적 입력'
+                  type='text'
+                  placeholder='임대할 부분 면적 입력'
+                  value={rentableSpaceArea}
+                  onChange={(e) => dispatch(changeRentableSpaceArea(e.target.value))}
+                />
+                <span>m²</span>
+              </InputBox>
+            </>
+          }
         </CheckWrapper>
 
       </OptionBody>
