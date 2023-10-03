@@ -6,6 +6,8 @@ import file from './file';
 import result from './result';
 import optionFirst from './optionFirst';
 import optionSecond from './optionSecond';
+import optionThird from './optionThird';
+import optionFourth from './optionFourth';
 import optionFifth from './optionFifth';
 import optionSixth from './optionSixth';
 import optionSeventh from './optionSeventh';
@@ -18,6 +20,8 @@ const rootReducer = combineReducers({
   result,
   optionFirst,
   optionSecond,
+  optionThird,
+  optionFourth,
   optionFifth,
   optionSixth,
   optionSeventh,
