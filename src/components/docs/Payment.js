@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
+import { useSelector } from 'react-redux';
 
 const PaymentBlock = styled.div`
   margin-left: 4rem;
@@ -58,62 +59,113 @@ const PaymentTableBodyRight = styled.div`
   }
 `
 
-
 const Payment = () => {
+  const {
+    subsidy,
+    downPayment,
+    payer,
+    middlePayment,
+    middlePaymentDay,
+    balance,
+    balancePaymentDay,
+    paid,
+    charge,
+    chargePaymentDate,
+    } = useSelector(({optionThird}) => ({
+        subsidy: optionThird.subsidy,
+        downPayment: optionThird.downPayment,
+        payer: optionThird.payer,
+        middlePayment: optionThird.middlePayment,
+        middlePaymentDay: optionThird.middlePaymentDay,
+        balance: optionThird.balance,
+        balancePaymentDay: optionThird.balancePaymentDay,
+        paid: optionThird.paid,
+        charge: optionThird.charge,
+        chargePaymentDate: optionThird.chargePaymentDate,
+      }))
+
   return (
     <PaymentBlock>
-      <PaymentTableHeader>
-        <div>
-          2. 계약내용
-        </div>
-      </PaymentTableHeader>
-      <PaymentTableBody>
-        <PaymentTableBodyLeft>
-          <div>보 증  금</div>
-        </PaymentTableBodyLeft>
-        <PaymentTableBodyRight>
-          <div>금</div>
-          <div>원정 (₩                         )</div>
-        </PaymentTableBodyRight>
-      </PaymentTableBody>
-      <PaymentTableBody>
-        <PaymentTableBodyLeft>
-          <div>계 약  금</div>
-        </PaymentTableBodyLeft>
-        <PaymentTableBodyRight>
-          <div>금</div>
+    
+      { subsidy !== '' ||
+        downPayment !== '' ||
+        payer !== '' ||
+        middlePayment !== '' ||
+        middlePaymentDay !== '' ||
+        balance !== '' ||
+        balancePaymentDay !== '' ||
+        paid !== '' ||
+        charge !== '' ||
+        chargePaymentDate !== '' ? <>  
+        <PaymentTableHeader>
           <div>
-            <span>원정은 계약시에 지급하고 영수함</span>, 영수자(                 <span>(인)</span>)
+            2. 계약내용
           </div>
-        </PaymentTableBodyRight>
-      </PaymentTableBody>
-      <PaymentTableBody>
-        <PaymentTableBodyLeft>
-          <div>중 도  금</div>
-        </PaymentTableBodyLeft>
-        <PaymentTableBodyRight>
-          <div>금</div>
-          <div>원정은     년      월      일에지급하며</div>
-        </PaymentTableBodyRight>
-      </PaymentTableBody>
-      <PaymentTableBody>
-        <PaymentTableBodyLeft>
-          <div>잔       금</div>
-        </PaymentTableBodyLeft>
-        <PaymentTableBodyRight>
-          <div>금</div>
-          <div>원정은     년      월      일에지급한다</div>
-        </PaymentTableBodyRight>
-      </PaymentTableBody>
-      <PaymentTableBody>
-        <PaymentTableBodyLeft>
-          <div>차       임</div>
-        </PaymentTableBodyLeft>
-        <PaymentTableBodyRight>
-          <div>금</div>
-          <div>원정은 (선불로⋅후불로) 매월      일에지급한다</div>
-        </PaymentTableBodyRight>
-      </PaymentTableBody>
+        </PaymentTableHeader>
+      </> : <></>}
+
+      { subsidy !== '' ? <>
+        <PaymentTableBody>
+          <PaymentTableBodyLeft>
+            <div>보 증  금</div>
+          </PaymentTableBodyLeft>
+          <PaymentTableBodyRight>
+            <div>금</div>
+            <div>원정 (₩                         )</div>
+          </PaymentTableBodyRight>
+        </PaymentTableBody>
+      </> : <></>}
+    
+      { downPayment !== '' || payer !== '' ? <> 
+        <PaymentTableBody>
+          <PaymentTableBodyLeft>
+            <div>계 약  금</div>
+          </PaymentTableBodyLeft>
+          <PaymentTableBodyRight>
+            <div>금</div>
+            <div>
+              <span>원정은 계약시에 지급하고 영수함</span>, 영수자(                 <span>(인)</span>)
+            </div>
+          </PaymentTableBodyRight>
+        </PaymentTableBody>
+      </> : <></>}
+
+      { middlePayment !== '' || middlePaymentDay !== '' ? <>
+        <PaymentTableBody>
+          <PaymentTableBodyLeft>
+            <div>중 도  금</div>
+          </PaymentTableBodyLeft>
+          <PaymentTableBodyRight>
+            <div>금</div>
+            <div>원정은     년      월      일에지급하며</div>
+          </PaymentTableBodyRight>
+        </PaymentTableBody>
+      </> : <></>}
+
+      { balance !== '' || balancePaymentDay !== '' ? <>
+        <PaymentTableBody>
+          <PaymentTableBodyLeft>
+            <div>잔       금</div>
+          </PaymentTableBodyLeft>
+          <PaymentTableBodyRight>
+            <div>금</div>
+            <div>원정은     년      월      일에지급한다</div>
+          </PaymentTableBodyRight>
+        </PaymentTableBody>
+      </> : <></>}
+
+      { paid !== '' || charge !== '' || chargePaymentDate !== '' ? <>
+        <PaymentTableBody>
+          <PaymentTableBodyLeft>
+            <div>차       임</div>
+          </PaymentTableBodyLeft>
+          <PaymentTableBodyRight>
+            <div>금</div>
+            <div>원정은 (선불로⋅후불로) 매월      일에지급한다</div>
+          </PaymentTableBodyRight>
+        </PaymentTableBody>
+      </> : <></>}
+
     </PaymentBlock >
   );
 };
