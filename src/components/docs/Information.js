@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
+import { useSelector } from 'react-redux';
 
 const InformationBlock = styled.div`
   margin-bottom: 4rem;
@@ -55,89 +56,139 @@ const Signature = styled.div`
 `
 
 const Information = () => {
-  const HostType = '법인'
-  const tenantType = '개인'
+
+  const {
+    hostType, 
+    tenantType, 
+    hostInputFirst,
+    hostInputSecond,
+    hostAddress,
+    hostRestAddress,
+    hostPhoneNum,
+    tenantInputFirst,
+    tenantInputSecond,
+    tenantAddress,
+    tenantRestAddress,
+    tenantPhoneNum,
+    } = useSelector(({optionFirst, optionSixth, optionSeventh}) => ({
+        hostType: optionFirst.hostType,
+        tenantType: optionFirst.tenantType,
+        hostInputFirst: optionSixth.hostInputFirst,
+        hostInputSecond: optionSixth.hostInputSecond,
+        hostAddress: optionSixth.hostAddress,
+        hostRestAddress: optionSixth.hostRestAddress,
+        hostPhoneNum: optionSixth.hostPhoneNum,
+        tenantInputFirst: optionSeventh.tenantInputFirst,
+        tenantInputSecond: optionSeventh.tenantInputSecond,
+        tenantAddress: optionSeventh.tenantAddress,
+        tenantRestAddress: optionSeventh.tenantRestAddress,
+        tenantPhoneNum: optionSeventh.tenantPhoneNum,
+      }))
 
   return (
     <InformationBlock>
-      <InformationWrapper>
-        <div className='note'>
-          ※ 본 계약을 증염하기 위하여 계약 당사자가 이의 없음을 확인하고 각각 성명⋅날인 후 임대인, 임차인은 각각 1통씩 보관한다
-        </div>
-        <div className='header'>임대인</div>
-        {
-          HostType === '법인' ? <>
-          <Informations>
-            <InformationList>
-              <InformationItem>법인명:</InformationItem>
-              <InformationItem>대표이사:</InformationItem>
-              <InformationItem>주소:</InformationItem>
-              <InformationItem>전화번호:</InformationItem>
-            </InformationList>
-            <Signature>(서명)</Signature>
-          </Informations>
-          </> : (HostType === '개인사업자' ? <>
-          <Informations>
-            <InformationList>
-              <InformationItem>상호(사업체명):</InformationItem>
-              <InformationItem>사업주명:</InformationItem>
-              <InformationItem>주소:</InformationItem>
-              <InformationItem>전화번호:</InformationItem>
-            </InformationList>
-            <Signature>(서명)</Signature>
-          </Informations>
-          </> : <>
-          <Informations>
-            <InformationList>
-              <InformationItem>성명:</InformationItem>
-              <InformationItem>주민번호:</InformationItem>
-              <InformationItem>주소:</InformationItem>
-              <InformationItem>전화번호:</InformationItem>
-            </InformationList>
-            <Signature>(서명)</Signature>
-          </Informations>
-          </>)
-        }
-      </InformationWrapper>
-      <InformationWrapper>
-        <div className='header'>임차인</div>
-        {
-          tenantType === '법인' ? <>
-          <Informations>
-            <InformationList>
-              <InformationItem>법인명:</InformationItem>
-              <InformationItem>대표이사:</InformationItem>
-              <InformationItem>주소:</InformationItem>
-              <InformationItem>전화번호:</InformationItem>
-            </InformationList>
-            <Signature>(서명)</Signature>
-          </Informations>
-          </> : (tenantType === '개인사업자' ? <>
-          <Informations>
-            <InformationList>
-              <InformationItem>상호(사업체명):</InformationItem>
-              <InformationItem>사업주명:</InformationItem>
-              <InformationItem>주소:</InformationItem>
-              <InformationItem>전화번호:</InformationItem>
-            </InformationList>
-            <Signature>(서명)</Signature>
-          </Informations>
-          </> : <>
-          <Informations>
-            <InformationList>
-              <InformationItem>성명:</InformationItem>
-              <InformationItem>주민번호:</InformationItem>
-              <InformationItem>주소:</InformationItem>
-              <InformationItem>전화번호:</InformationItem>
-            </InformationList>
-            <Signature>(서명)</Signature>
-          </Informations>
-          </>)
-        }
-        <div className='red'>
-          주택임대차 관련 분쟁은 전문가로 구성된 대한법률구조공단 분쟁조정위원회에게 신속하고 효율적으로 해결할 수 있습니다 (국번없는 132)
-        </div>
-      </InformationWrapper>
+      { hostType !== '' || tenantType !== '' ? <>
+        <InformationWrapper>
+          <div className='note'>
+            ※ 본 계약을 증염하기 위하여 계약 당사자가 이의 없음을 확인하고 각각 성명⋅날인 후 임대인, 임차인은 각각 1통씩 보관한다
+          </div>
+        </InformationWrapper>
+      </> : <></>}
+
+      { hostInputFirst !== '' ||
+        hostInputSecond !== '' ||
+        hostAddress !== '' ||
+        hostRestAddress !== '' ||
+        hostPhoneNum !== '' ? <>
+          <InformationWrapper>
+            <div className='header'>임대인</div>
+            {
+              hostType === '법인명' ? <>
+              <Informations>
+                <InformationList>
+                  <InformationItem>법인명:{hostInputFirst}</InformationItem>
+                  <InformationItem>대표이사:{hostInputSecond}</InformationItem>
+                  <InformationItem>주소:{hostAddress + hostRestAddress}</InformationItem>
+                  <InformationItem>전화번호:{hostPhoneNum}</InformationItem>
+                </InformationList>
+                <Signature>(서명)</Signature>
+              </Informations>
+              </> : (hostType === '상호(사업체명)' ? <>
+              <Informations>
+                <InformationList>
+                  <InformationItem>상호(사업체명):{hostInputFirst}</InformationItem>
+                  <InformationItem>사업주명:{hostInputSecond}</InformationItem>
+                  <InformationItem>주소:{hostAddress + hostRestAddress}</InformationItem>
+                  <InformationItem>전화번호:{hostInputFirst}</InformationItem>
+                </InformationList>
+                <Signature>(서명)</Signature>
+              </Informations>
+              </> : <>
+              <Informations>
+                <InformationList>
+                  <InformationItem>성명:{hostInputFirst}</InformationItem>
+                  <InformationItem>주민번호:{hostInputSecond}</InformationItem>
+                  <InformationItem>주소:{hostAddress + hostRestAddress}</InformationItem>
+                  <InformationItem>전화번호:{hostPhoneNum}</InformationItem>
+                </InformationList>
+                <Signature>(서명)</Signature>
+              </Informations>
+              </>)
+            }
+          </InformationWrapper>
+        </> : <></>}
+      
+      { tenantInputFirst !== '' ||
+        tenantInputSecond !== '' ||
+        tenantAddress !== '' || 
+        tenantRestAddress !== '' ||
+        tenantPhoneNum !== '' ? <>
+          <InformationWrapper>
+            <div className='header'>임차인</div>
+            {
+              tenantType === '법인명' ? <>
+              <Informations>
+                <InformationList>
+                  <InformationItem>법인명:{tenantInputFirst}</InformationItem>
+                  <InformationItem>대표이사:{tenantInputSecond}</InformationItem>
+                  <InformationItem>주소:{tenantAddress + tenantRestAddress}</InformationItem>
+                  <InformationItem>전화번호:{tenantPhoneNum}</InformationItem>
+                </InformationList>
+                <Signature>(서명)</Signature>
+              </Informations>
+              </> : (tenantType === '상호(사업체명)' ? <>
+              <Informations>
+                <InformationList>
+                  <InformationItem>상호(사업체명):{tenantInputFirst}</InformationItem>
+                  <InformationItem>사업주명:{tenantInputSecond}</InformationItem>
+                  <InformationItem>주소:{tenantAddress + tenantRestAddress}</InformationItem>
+                  <InformationItem>전화번호:{tenantPhoneNum}</InformationItem>
+                </InformationList>
+                <Signature>(서명)</Signature>
+              </Informations>
+              </> : <>
+              <Informations>
+                <InformationList>
+                  <InformationItem>성명:{tenantInputFirst}</InformationItem>
+                  <InformationItem>주민번호:{tenantInputSecond}</InformationItem>
+                  <InformationItem>주소:{tenantAddress + tenantRestAddress}</InformationItem>
+                  <InformationItem>전화번호:{tenantPhoneNum}</InformationItem>
+                </InformationList>
+                <Signature>(서명)</Signature>
+              </Informations>
+              </>)
+            }
+          </InformationWrapper>
+        </> : <></>}
+      
+      { hostType !== '' || tenantType !== '' ? <>
+        <InformationWrapper>
+          <div className='red'>
+            주택임대차 관련 분쟁은 전문가로 구성된 대한법률구조공단 분쟁조정위원회에게 신속하고 효율적으로 해결할 수 있습니다 (국번없는 132)
+          </div>
+        </InformationWrapper>
+      </> : <></>}
+        
     </InformationBlock >
   );
 };
