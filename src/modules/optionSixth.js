@@ -2,22 +2,22 @@ import { createAction, handleActions } from 'redux-actions'
 
 const CHANGE_HOST_INPUT_FIRST = 'optionSixth/CHANGE_HOST_INPUT_FIRST'
 const CHANGE_HOST_INPUT_SECOND = 'optionSixth/CHANGE_HOST_INPUT_SECOND'
-const CHANGE_ADDRESS = 'optionSixth/CHANGE_ADDRESS'
-const CHANGE_REST_ADDRESS = 'optionSixth/CHANGE_REST_ADDRESS'
-const CHANGE_PHONE_NUM = 'optionSixth/CHANGE_PHONE_NUM'
+const CHANGE_HOST_ADDRESS = 'optionSixth/CHANGE_ADDRESS'
+const CHANGE_HOST_REST_ADDRESS = 'optionSixth/CHANGE_REST_ADDRESS'
+const CHANGE_HOST_PHONE_NUM = 'optionSixth/CHANGE_PHONE_NUM'
 
 export const changeHostInputFirst = createAction(CHANGE_HOST_INPUT_FIRST, hostInputFirst => hostInputFirst);
 export const changeHostInputSecond = createAction(CHANGE_HOST_INPUT_SECOND, hostInputSecond => hostInputSecond);
-export const changeAddress = createAction(CHANGE_ADDRESS, address => address);
-export const changeRestAddress = createAction(CHANGE_REST_ADDRESS, restAddress => restAddress);
-export const changePhoneNum = createAction(CHANGE_PHONE_NUM, phoneNum => phoneNum);
+export const changeHostAddress = createAction(CHANGE_HOST_ADDRESS, hostAddress => hostAddress);
+export const changeHostRestAddress = createAction(CHANGE_HOST_REST_ADDRESS, hostRestAddress => hostRestAddress);
+export const changeHostPhoneNum = createAction(CHANGE_HOST_PHONE_NUM, hostPhoneNum => hostPhoneNum);
 
 const initialState = {
   hostInputFirst: '',
   hostInputSecond: '',
-  address: '',
-  restAddress: '',
-  phoneNum: '',
+  hostAddress: '',
+  hostRestAddress: '',
+  hostPhoneNum: '',
 }
 
 const optionSixth = handleActions(
@@ -30,17 +30,17 @@ const optionSixth = handleActions(
       ...state,
       hostInputSecond,
     }),
-    [CHANGE_ADDRESS] : (state, {payload : address}) => ({
+    [CHANGE_HOST_ADDRESS] : (state, {payload : hostAddress}) => ({
       ...state,
-      address,
+      hostAddress,
     }),
-    [CHANGE_REST_ADDRESS] : (state, {payload : restAddress}) => ({
+    [CHANGE_HOST_REST_ADDRESS] : (state, {payload : hostRestAddress}) => ({
       ...state,
-      restAddress,
+      hostRestAddress,
     }),
-    [CHANGE_PHONE_NUM] : (state, {payload : phoneNum}) => ({
+    [CHANGE_HOST_PHONE_NUM] : (state, {payload : hostPhoneNum}) => ({
       ...state,
-      phoneNum,
+      hostPhoneNum,
     }),
   },
   initialState
