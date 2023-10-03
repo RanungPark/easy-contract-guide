@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import {GrCheckboxSelected} from 'react-icons/gr';
+import { useSelector } from 'react-redux';
 
 const CharterBlock = styled.div`
   margin-top: 2rem;
@@ -26,31 +27,23 @@ const CharterBlock = styled.div`
 `;
 
 const Charter = () => {
-  const payment = '전세'
+  const {type} = useSelector(({optionSecond}) => ({
+    type: optionSecond.type,
+  }))
+
   return (
     <CharterBlock>
-       {
-        payment === '전세' ? 
-        <>
-          <div className='flexbox'>
-            <div className='icon'>
-              <GrCheckboxSelected />
-            </div>
-            <div className='text'>
-              전세
-            </div>
+      <div className='flexbox'>
+        {
+          type !== '' &&
+          <div className='icon'>
+            <GrCheckboxSelected />
           </div>
-        </> : <>
-          <div className='flexbox'>
-            <div className='icon'>
-              <GrCheckboxSelected />
-            </div>
-            <div className='text'>
-              월세 및 반전세
-            </div>
-          </div>
-        </>
-      }
+        }
+        <div className='text'>
+        {type}
+        </div>
+      </div>
     </CharterBlock >
   );
 };
