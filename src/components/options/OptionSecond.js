@@ -118,6 +118,13 @@ const OptionSecond = () => {
     )
   }
 
+  useEffect(() => {
+    dispatch(
+      changeMonthlyRent(''),
+      changePaymentDate('')
+    )
+  },[dispatch,type]);
+
   return (
     <OptionSecondBlock>
       <OptionBody>
