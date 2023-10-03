@@ -92,11 +92,8 @@ const AddresBox = styled.div`
 
 const OptionFifth = () => {
   const [address, setAddress] = useState('');
-
   const [landUseToggle, setLandUseToggle] = useState(false);
-
   const [buildingUseToggle, setBuildingUseToggle] = useState(false);
-
   const [rentableSpaceToggle, setRentableSpaceToggle] = useState(false);
 
   const dispatch = useDispatch();
