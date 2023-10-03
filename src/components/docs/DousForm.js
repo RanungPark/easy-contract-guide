@@ -5,7 +5,8 @@ import Information from './Information';
 import Article from './Article';
 import Charter from './Charter';
 import RealEstate from './RealEstate';
-
+import Payment from './Payment';
+import Account from './Account';
 
 const DousFormBlock = styled.div`
   width: 79vw;
@@ -79,6 +80,8 @@ const DousForm = () => {
           </div>
           <Charter />
           <RealEstate />
+          <Payment />
+          <Account />
           <Article />
           <div className='footerWrapper'>
             <div className='footer'>{year}년 {month}월 {date}일</div>
