@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
 import Address from '../common/Address';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeAddress, changeHostInputFirst, changeHostInputSecond, changePhoneNum, changeRestAddress } from '../../modules/optionSixth';
 
 const OptionSixthBlock = styled.div``;
 
@@ -76,99 +78,138 @@ const AddresBox = styled.div`
 `
 
 const OptionSixth = () => {
-  const [name, setName] = useState('')
-  const [residentNum, setResidentNum] = useState('')
-  const [address, setAddress] = useState('')
-  const [restAddress, setRestAddress] = useState('')
-  const [phoneNum, setPhoneNum] = useState('')
-  const [hostType, setHostType] = useState('')
+  const [address, setAddress] = useState('');
+  
+  const dispatch = useDispatch();
+  const {
+    hostType,
+    hostInputFirst,
+    hostInputSecond,
+    restAddress,
+    phoneNum
+    } = useSelector(({optionFirst, optionSixth}) => ({
+        hostType: optionFirst.hostType,
+        hostInputFirst: optionSixth.hostInputFirst,
+        hostInputSecond: optionSixth.hostInputSecond,
+        restAddress: optionSixth.restAddress,
+        phoneNum: optionSixth.phoneNum,
+      }))
+
+    const handleChnageAddress = (fullAddress) => {
+      setAddress(fullAddress)
+      dispatch(changeAddress(fullAddress))
+    };
 
   return (
     <OptionSixthBlock>
-      <OptionBody>
+      { hostType !== '' && 
+        <OptionBody>
+          
+          {
+            hostType === '법인명' ? <>
+              <InputWrapper>
+                <div className='title'>법인명</div>
+                <InputBox>
+                  <input
+                    type='text'
+                    placeholder='법인명 입력'
+                    value={hostInputFirst}
+                    onChange={(e) => dispatch(changeHostInputFirst(e.target.value))}
+                  />
+                </InputBox>
+              </InputWrapper>
 
-        {
-          hostType === '법인' ? <>
-            <InputWrapper>
-            <div className='title'>법인명</div>
+              <InputWrapper>
+                <div className='title'>대표이사</div>
+                <InputBox>
+                  <input 
+                    type='text'
+                    placeholder='대표이사 입력'
+                    value={hostInputSecond}
+                    onChange={(e) => dispatch(changeHostInputSecond(e.target.value))}
+                  />
+                </InputBox>
+              </InputWrapper>
+            </> : (hostType === '상호(사업체명)' ? <>
+              <InputWrapper>
+                <div className='title'>상호(사업체명)</div>
+                <InputBox>
+                  <input
+                    type='text'
+                    placeholder='상호(사업체명) 입력'
+                    value={hostInputFirst}
+                    onChange={(e) => dispatch(changeHostInputFirst(e.target.value))}
+                  />
+                </InputBox>
+              </InputWrapper>
+
+              <InputWrapper>
+                <div className='title'>사업주명</div>
+                <InputBox>
+                  <input
+                    type='text'
+                    placeholder='사업주명 입력'
+                    value={hostInputSecond}
+                    onChange={(e) => dispatch(changeHostInputSecond(e.target.value))}
+                  />
+                </InputBox>
+              </InputWrapper>
+            </>: <>
+              <InputWrapper>
+                <div className='title'>성명</div>
+                <InputBox>
+                  <input
+                    type='text'
+                    placeholder='성명 입력'
+                    value={hostInputFirst}
+                    onChange={(e) => dispatch(changeHostInputFirst(e.target.value))}
+                  />
+                </InputBox>
+              </InputWrapper>
+
+              <InputWrapper>
+                <div className='title'>주민번호</div>
+                <InputBox>
+                  <input
+                    type='text'
+                    placeholder='주민번호 입력'
+                    value={hostInputSecond}
+                    onChange={(e) => dispatch(changeHostInputSecond(e.target.value))}
+                  />
+                </InputBox>
+              </InputWrapper>
+            </>)
+          }
+
+          <AddressWrapper>
+            <div className='title'>주소</div>
+            <AddresBox >
+              <Address handleChnageAddress={handleChnageAddress} address={address}/>
+            </AddresBox>
             <InputBox>
               <input
                 type='text'
-                placeholder='법인명 입력'
+                placeholder='상세주소를 입력해주세요'
+                value={restAddress}
+                onChange={(e) => dispatch(changeRestAddress(e.target.value))}
               />
             </InputBox>
-            </InputWrapper>
+          </AddressWrapper>
 
-            <InputWrapper>
-              <div className='title'>대표이사</div>
-              <InputBox>
-                <input 
-                  type='text'
-                  placeholder='대표이사 입력'
-                />
-              </InputBox>
-            </InputWrapper>
-          </> : (hostType === '개인사업자' ? <>
-            <InputWrapper>
-              <div className='title'>상호(사업체명)</div>
-              <InputBox>
-                <input
-                  type='text'
-                  placeholder='개인사업자 입력'
-                />
-              </InputBox>
-            </InputWrapper>
+          <InputWrapper className='paddingBottomAdd'>
+            <div className='title'>전화번호</div>
+            <InputBox>
+              <input
+                type='text'
+                placeholder='전호번호 입력'
+                value={phoneNum}
+                onChange={(e) => dispatch(changePhoneNum(e.target.value))}
+              />
+            </InputBox>
+          </InputWrapper>
 
-            <InputWrapper>
-              <div className='title'>사업주명</div>
-              <InputBox>
-                <input
-                  type='text'
-                  placeholder='사업주명 입력'
-                />
-              </InputBox>
-            </InputWrapper>
-          </>: <>
-            <InputWrapper>
-              <div className='title'>성명</div>
-              <InputBox>
-                <input
-                  type='text'
-                  placeholder='성명 입력'
-                />
-              </InputBox>
-            </InputWrapper>
-
-            <InputWrapper>
-              <div className='title'>주민번호</div>
-              <InputBox>
-                <input
-                  type='text'
-                  placeholder='주민번호 입력'
-                />
-              </InputBox>
-            </InputWrapper>
-          </>)
-        }
-
-        <AddressWrapper>
-          <div className='title'>주소</div>
-          <AddresBox >
-            <Address setAddress={setAddress} address={address}/>
-          </AddresBox>
-          <InputBox>
-            <input type='text' placeholder='상세주소를 입력해주세요'/>
-          </InputBox>
-        </AddressWrapper>
-
-        <InputWrapper className='paddingBottomAdd'>
-          <div className='title'>전화번호</div>
-          <InputBox>
-            <input type='text' placeholder='전호번호 입력'/>
-          </InputBox>
-        </InputWrapper>
-
-      </OptionBody>
+        </OptionBody>
+      }
     </OptionSixthBlock >
   );
 };

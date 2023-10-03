@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import palette from '../../libs/styles/palette';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeHost, changeHostType, changeTenant, changeTenantType } from '../../modules/optionFirst';
 
 const OptionFirstBlock = styled.div`
 `;
@@ -71,26 +73,25 @@ const InputBox = styled.div`
 `
 
 const OptionFirst = () => {
-  const [hostRadio, setHostRadio] = useState(false);
-  const [tenantRadio, setTenantRadio] = useState(false);
-  const [hostInput, setHostInput] = useState('');
-  const [tenantInput, setTenantInput] = useState('');
-
-  const handleHostClick = (e) => {
-    setHostRadio(e.target.value);
-  }
-
-  const handleTenantClick = (e) => {
-    setTenantRadio(e.target.value);
-  }
+  const dispatch = useDispatch();
+  const {hostType, host, tenant, tenantType} = useSelector(({optionFirst}) => ({
+    hostType: optionFirst.hostType,
+    host: optionFirst.host,
+    tenant: optionFirst.tenant,
+    tenantType: optionFirst.tenantType,
+  }))
 
   useEffect(() => {
-    setHostInput('');
-  },[setHostInput, hostRadio]);
+    dispatch(
+      changeHost('')
+    );
+  },[dispatch, hostType]);
 
   useEffect(() => {
-    setTenantInput('');
-  },[setTenantInput, tenantRadio]);
+     dispatch(
+      changeHost('')
+    );
+  },[dispatch, tenantType]);
 
   return (
     <OptionFirstBlock>
@@ -98,41 +99,61 @@ const OptionFirst = () => {
         <RadioWrapper>
           <div className='title'>집주인</div>
           <RadioBox>
-            <input type="radio" id="host법인" name="host" value="법인명" onClick={handleHostClick}/>
+            <input 
+              type="radio"
+              id="host법인"
+              name="host"
+              value="법인명"
+              onClick={e => dispatch(changeHostType(e.target.value))}
+            />
             <label for="host법인">법인</label>
-            <input className="marginLeftAdd" type="radio" id="host개인사업자" name="host" value="상호(사업체명)" onClick={handleHostClick}/>
+            <input
+              className="marginLeftAdd"
+              type="radio"
+              id="host개인사업자"
+              name="host"
+              value="상호(사업체명)"
+              onClick={e => dispatch(changeHostType(e.target.value))}
+            />
             <label for="host개인사업자">개인사업자</label>
-            <input className="marginLeftAdd" type="radio" id="host개인" name="host" value="성명" onClick={handleHostClick}/>
+            <input
+              className="marginLeftAdd"
+              type="radio"
+              id="host개인"
+              name="host"
+              value="성명"
+              onClick={e => dispatch(changeHostType(e.target.value))}
+            />
             <label for="host개인">개인</label>
           </RadioBox>
           {
-            hostRadio !== false && <>
+            hostType !== '' && <>
               <InputBox>
-                <label htmlFor='hostInput'>{hostRadio}</label>
+                <label htmlFor='hostInput'>{hostType}</label>
                 {
-                  hostRadio === '법인명' ? 
+                  hostType === '법인명' ? 
                     <input
-                      id="tenantInput"
+                      id="hostInput"
                       type='text'
                       placeholder='법인명 입력'
-                      value={hostInput} 
-                      onChange={e => setTenantInput(e.target.value)}
+                      value={host} 
+                      onChange={e => dispatch(changeHost(e.target.value))}
                     />
-                    : (hostRadio === '상호(사업체명)' ?
+                    : (hostType === '상호(사업체명)' ?
                     <input
-                      id="tenantInput"
+                      id="hostInput"
                       type='text'
                       placeholder='상호(사업체명) 입력'
-                      value={hostInput} 
-                      onChange={e => setTenantInput(e.target.value)}
+                      value={host} 
+                      onChange={e => dispatch(changeHost(e.target.value))}
                     />
                     : 
                     <input
-                    id="tenantInput"
+                    id="hostInput"
                     type='text'
                     placeholder='성명 입력'
-                    value={hostInput} 
-                    onChange={e => setTenantInput(e.target.value)}
+                    value={host} 
+                    onChange={e => dispatch(changeHost(e.target.value))}
                     />
                     )
                 }
@@ -142,42 +163,63 @@ const OptionFirst = () => {
         </RadioWrapper>
         
         <RadioWrapper className='paddingBottomAdd'>
+          <div className='title'>세입자</div>
           <RadioBox>
-            <input type="radio" id="tenant법인" name="tenant" value="법인명" onClick={handleTenantClick}/>
+            <input
+              type="radio"
+              id="tenant법인"
+              name="tenant"
+              value="법인명"
+              onClick={e => dispatch(changeTenantType(e.target.value))}
+            />
             <label for="tenant법인">법인</label>
-            <input  className="marginLeftAdd" type="radio" id="tenant개인사업자" name="tenant" value="상호(사업체명)" onClick={handleTenantClick}/>
+            <input 
+              className="marginLeftAdd"
+              type="radio"
+              id="tenant개인사업자" 
+              name="tenant"
+              value="상호(사업체명)" 
+              onClick={e => dispatch(changeTenantType(e.target.value))}
+            />
             <label for="tenant개인사업자">개인사업자</label>
-            <input  className="marginLeftAdd" type="radio" id="tenant개인" name="tenant" value="성명" onClick={handleTenantClick}/>
+            <input 
+              className="marginLeftAdd"
+              type="radio"
+              id="tenant개인"
+              name="tenant"
+              value="성명"
+              onClick={e => dispatch(changeTenantType(e.target.value))}
+            />
             <label for="tenant개인">개인</label>
           </RadioBox>
           {
-            tenantRadio !== false && <>
+            tenantType !== '' && <>
               <InputBox>
-                <label htmlFor='tenantInput'>{tenantRadio}</label>
+                <label htmlFor='tenantInput'>{tenantType}</label>
                 {
-                  tenantRadio === '법인명' ? 
+                  tenantType === '법인명' ? 
                     <input
                       id="tenantInput"
                       type='text'
                       placeholder='법인명 입력'
-                      value={tenantInput} 
-                      onChange={e => setTenantInput(e.target.value)}
+                      value={tenant} 
+                      onChange={e => dispatch(changeTenant(e.target.value))}
                     />
-                    : (tenantRadio === '상호(사업체명)' ?
+                    : (tenantType === '상호(사업체명)' ?
                     <input
                       id="tenantInput"
                       type='text'
                       placeholder='상호(사업체명) 입력'
-                      value={tenantInput} 
-                      onChange={e => setTenantInput(e.target.value)}
+                      value={tenant} 
+                      onChange={e => dispatch(changeTenant(e.target.value))}
                     />
                     : 
                     <input
                     id="tenantInput"
                     type='text'
                     placeholder='성명 입력'
-                    value={tenantInput} 
-                    onChange={e => setTenantInput(e.target.value)}
+                    value={tenant} 
+                    onChange={e => dispatch(changeTenant(e.target.value))}
                     />
                     )
                 }

@@ -4,6 +4,8 @@ import palette from '../../libs/styles/palette';
 import dayjs from 'dayjs';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeMonthlyRent, changePaymentDate, changeType, changeStartDay, changeEndDay } from '../../modules/optionSecond';
 
 const OptionSecondBlock = styled.div`
 `;
@@ -90,22 +92,32 @@ const DateBox = styled.div`
 `
 
 const OptionSecond = () => {
-  const [type, setType] = useState('');
 
   const [startDay, setStartDay] = useState(dayjs('2023-09-26'));
   const [endDay, setEndDay] = useState(dayjs('2023-10-26'));
 
-  const [monthlyRent, setMonthlyRent] = useState('');
-  const [paymentDate, setPaymentDate] = useState('');
+  const dispatch = useDispatch();
+  const {type, monthlyRent, paymentDate} = useSelector(({optionSecond}) => ({
+    type: optionSecond.type,
+    monthlyRent: optionSecond.monthlyRent,
+    paymentDate: optionSecond.paymentDate,
+  }))
 
-  const handleTypeClick = (e) => {
-    setType(e.target.value);
+  const handleStartDayChange = (newValue) => {
+    setStartDay(newValue)
+    const startDay = newValue.$y + '년' + (newValue.$M + 1) + '월' + newValue.$D + '일'
+    dispatch(
+      changeStartDay(startDay)
+    )
   }
 
-  useEffect(() => {
-    setMonthlyRent('');
-    setPaymentDate('');
-  },[setMonthlyRent, setPaymentDate, type]);
+  const handleEndDayChange = (newValue) => {
+    setEndDay(newValue)
+    const endDay = newValue.$y + '년' + (newValue.$M + 1) + '월' + newValue.$D + '일'
+    dispatch(
+      changeEndDay(endDay)
+    )
+  }
 
   return (
     <OptionSecondBlock>
@@ -114,9 +126,22 @@ const OptionSecond = () => {
         <RadioWrapper>
           <div className='title'>임대차 계약의 종류</div>
           <RadioBox>
-            <input type="radio" id="월세 및 반전세" name="type" value="월세 및 반전세" onClick={handleTypeClick}/>
+            <input
+              type="radio"
+              id="월세 및 반전세"
+              name="type"
+              value="월세 및 반전세"
+              onClick={e => dispatch(changeType(e.target.value))}
+            />
             <label for="월세 및 반전세">월세 및 반전세</label>
-            <input className="marginLeftAdd" type="radio" id="전세" name="type" value="전세" onClick={handleTypeClick}/>
+            <input
+              className="marginLeftAdd"
+              type="radio"
+              id="전세"
+              name="type"
+              value="전세"
+              onClick={e => dispatch(changeType(e.target.value))}
+            />
             <label for="전세">전세</label>
           </RadioBox>
         </RadioWrapper>
@@ -128,14 +153,14 @@ const OptionSecond = () => {
             <DatePicker 
               label="시작일"
               value={startDay}
-              onChange={(newValue) => setStartDay(newValue)}
+              onChange={handleStartDayChange}
             />
           </DateBox>
           <DateBox>
             <DatePicker
               label="종료일"
               value={endDay}
-              onChange={(newValue) => setEndDay(newValue)}
+              onChange={handleEndDayChange}
             />
           </DateBox>
         </LocalizationProvider>
@@ -152,7 +177,7 @@ const OptionSecond = () => {
                   type='text'
                   placeholder='월세금액 입력'
                   value={monthlyRent}
-                  onChange={e => setMonthlyRent(e.target.value)}
+                  onChange={e => dispatch(changeMonthlyRent(e.target.value))}
                 />
                 <span>원</span>
               </InputBox>
@@ -167,7 +192,7 @@ const OptionSecond = () => {
                   type='text'
                   placeholder='지불일 입력'
                   value={paymentDate}
-                  onChange={e => setPaymentDate(e.target.value)}
+                  onChange={e => dispatch(changePaymentDate(e.target.value))}
                 />
                 <span>일</span>
               </InputBox>
