@@ -8,12 +8,18 @@ const AddressDiv = styled.div`
   cursor: pointer;
 `
 
-const Address = ({setAddress, address}) => {
+const Address = ({handleChnageAddress, address}) => {
   const open = useDaumPostcodePopup(postcodeScriptUrl);
 
   const handleComplete = (data) => {
-    const fullAddress = data.roadAddress + ' (' + data.buildingName + ')'
-    setAddress(fullAddress);    
+    let fullAddress
+    if(data.buildingName === '') {
+      fullAddress = data.roadAddress
+    } else {
+      fullAddress = data.roadAddress + ' (' + data.buildingName + ')';
+    }
+    
+    handleChnageAddress(fullAddress);
   }
 
   const handleClick = () => {
