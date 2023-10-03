@@ -1,0 +1,15 @@
+const initialState = {
+  type: '',
+  subsidy: '',
+  downPayment: '',
+  payer: '',
+  middlePayment: '',
+  middlePaymentDay: '',
+  balance: '',
+  balancePaymentDay: '',
+  charge: '',
+  chargePaymentDate: '',
+  bankName: '',
+  accountNumber: '',
+  accountHolder: '',
+}
