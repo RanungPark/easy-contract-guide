@@ -4,6 +4,11 @@ import loading from './loading';
 import user from './user';
 import file from './file';
 import result from './result';
+import optionFirst from './optionFirst';
+import optionSecond from './optionSecond';
+import optionFifth from './optionFifth';
+import optionSixth from './optionSixth';
+import optionSeventh from './optionSeventh';
 
 const rootReducer = combineReducers({
   auth,
@@ -11,6 +16,11 @@ const rootReducer = combineReducers({
   user,
   file,
   result,
+  optionFirst,
+  optionSecond,
+  optionFifth,
+  optionSixth,
+  optionSeventh,
 })
 
 export function* rootSaga() {
