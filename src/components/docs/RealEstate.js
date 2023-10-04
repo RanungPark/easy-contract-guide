@@ -41,30 +41,36 @@ const RealEstateTableBodyLeft = styled.div`
   justify-content: center;
   align-items: center;
   width: 6vw;
-  height:4vh;
+  min-height:4vh;
   white-space: pre-wrap;
   margin:0;
   font-weight: bold;
 `
 const RealEstateTableBodyRight = styled.div`
   display:flex;
-  justify-content: space-between;
   white-space: pre-wrap;
   margin:0;
   width: 100%;
   align-items:center;
-  padding-right: 1rem;
   color: ${palette.gray[7]};
   border-bottom : 1px solid #3DA5F5;
   border-right : 1px solid #3DA5F5;
   font-weight: bold;
-  font-size: 0.95rem; 
+  font-size: 0.95rem;
+  min-height:4vh;
+  padding-right: 1rem;
+
+  &.rowReverse {
+    flex-direction: row-reverse;
+  }
+
+  .flex1 {
+    flex : 1;
+  }
 `
 const BodyType = styled.div`
   min-width: 3vw;
-  max-width: 4.5vw;
   background: #f9fcfe;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,6 +86,30 @@ const BodyType = styled.div`
   }
 `
 
+const Bodyleft = styled.div`
+  width: 50%;
+  display: flex;
+  word-break:break-all;
+  padding-right: 1rem;
+  height: 100%;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+`
+
+const BodyRight = styled.div`
+  width: 50%;
+  display: flex; 
+  word-break:break-all;
+  height: 100%;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+`
 
 const RealEstate = () => {
   const {
@@ -128,7 +158,8 @@ const RealEstate = () => {
           <RealEstateTableBodyLeft>
             <div>소 제  지</div>
           </RealEstateTableBodyLeft>
-          <RealEstateTableBodyRight>
+          <RealEstateTableBodyRight className='rowReverse'>
+            {address} {restAddress}
           </RealEstateTableBodyRight>
         </RealEstateTableBody>
       </> : <></> }
@@ -138,15 +169,23 @@ const RealEstate = () => {
           <RealEstateTableBodyLeft>
             <div>토       지</div>
           </RealEstateTableBodyLeft>
-          <RealEstateTableBodyRight>
-            <BodyType className='leftnone'>
-              <div>용도</div>
-            </BodyType>
-            <div></div>
-            <BodyType>
-              <div>면 적</div>
-            </BodyType>
-            <div>m²</div>
+          <RealEstateTableBodyRight >
+            <Bodyleft>
+              <BodyType className='leftnone'>
+                <div>용도</div>
+              </BodyType>
+              <div className='flex1'>
+                {landUse}
+              </div>
+            </Bodyleft>
+            <BodyRight>
+              <BodyType>
+                <div>면 적</div>
+              </BodyType>
+              <div className='flex1'>
+                {landUseArea}m²
+              </div>
+            </BodyRight>
           </RealEstateTableBodyRight>
         </RealEstateTableBody>
       </> : <></>}
@@ -157,14 +196,22 @@ const RealEstate = () => {
             <div>건       물</div>
           </RealEstateTableBodyLeft>
           <RealEstateTableBodyRight>
-            <BodyType className='leftnone'>
-              <div className='fontChange'>구조⋅용도</div>
-            </BodyType>
-            <div></div>
-            <BodyType >
-              <div>면 적</div>
-            </BodyType>
-            <div>m²</div>
+            <Bodyleft>
+              <BodyType className='leftnone'>
+                <div className='fontChange'>구조⋅용도</div>
+              </BodyType>
+              <div className='flex1'>
+                {buildingUse}
+              </div>
+            </Bodyleft>
+            <BodyRight>
+              <BodyType>
+                <div>면 적</div>
+              </BodyType>
+              <div className='flex1'>
+                {buildingUseArea}m²
+              </div>
+            </BodyRight>
           </RealEstateTableBodyRight>
         </RealEstateTableBody>
       </> : <></>}
@@ -175,14 +222,22 @@ const RealEstate = () => {
             <div>임대할부분</div>
           </RealEstateTableBodyLeft>
           <RealEstateTableBodyRight>
-            <BodyType className='leftnone'>
-              <div>용도</div>
-            </BodyType>
-            <div></div>
-            <BodyType>
-              <div>면 적</div>
-            </BodyType>
-            <div>m²</div>
+            <Bodyleft>
+              <BodyType className='leftnone'>
+                <div>용도</div>
+              </BodyType>
+              <div className='flex1'>
+                {rentableSpace}
+              </div>
+            </Bodyleft>
+            <BodyRight>
+              <BodyType>
+                <div>면 적</div>
+              </BodyType>
+              <div className='flex1'>
+                {rentableSpaceArea}m²
+              </div>
+            </BodyRight>
           </RealEstateTableBodyRight>
         </RealEstateTableBody>
       </> : <></>}
