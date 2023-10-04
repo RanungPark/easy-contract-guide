@@ -89,7 +89,7 @@ const OptionFirst = () => {
 
   useEffect(() => {
      dispatch(
-      changeHost('')
+      changeTenant('')
     );
   },[dispatch, tenantType]);
 
