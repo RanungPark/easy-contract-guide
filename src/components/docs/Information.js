@@ -44,7 +44,7 @@ const InformationList = styled.div`
 `
 
 const InformationItem = styled.div`
-  
+  white-space: pre-wrap;
 `
 
 const Signature = styled.div`
@@ -106,30 +106,30 @@ const Information = () => {
               hostType === '법인명' ? <>
               <Informations>
                 <InformationList>
-                  <InformationItem>법인명:{hostInputFirst}</InformationItem>
-                  <InformationItem>대표이사:{hostInputSecond}</InformationItem>
-                  <InformationItem>주소:{hostAddress + hostRestAddress}</InformationItem>
-                  <InformationItem>전화번호:{hostPhoneNum}</InformationItem>
+                  <InformationItem>법인명 : {hostInputFirst}</InformationItem>
+                  <InformationItem>대표이사 : {hostInputSecond}</InformationItem>
+                  <InformationItem>주소 : {hostAddress} {hostRestAddress}</InformationItem>
+                  <InformationItem>전화번호 : {hostPhoneNum}</InformationItem>
                 </InformationList>
                 <Signature>(서명)</Signature>
               </Informations>
               </> : (hostType === '상호(사업체명)' ? <>
               <Informations>
                 <InformationList>
-                  <InformationItem>상호(사업체명):{hostInputFirst}</InformationItem>
-                  <InformationItem>사업주명:{hostInputSecond}</InformationItem>
-                  <InformationItem>주소:{hostAddress + hostRestAddress}</InformationItem>
-                  <InformationItem>전화번호:{hostInputFirst}</InformationItem>
+                  <InformationItem>상호(사업체명) : {hostInputFirst}</InformationItem>
+                  <InformationItem>사업주명 : {hostInputSecond}</InformationItem>
+                  <InformationItem>주소 : {hostAddress} {hostRestAddress}</InformationItem>
+                  <InformationItem>전화번호 : {hostInputFirst}</InformationItem>
                 </InformationList>
                 <Signature>(서명)</Signature>
               </Informations>
               </> : <>
               <Informations>
                 <InformationList>
-                  <InformationItem>성명:{hostInputFirst}</InformationItem>
-                  <InformationItem>주민번호:{hostInputSecond}</InformationItem>
-                  <InformationItem>주소:{hostAddress + hostRestAddress}</InformationItem>
-                  <InformationItem>전화번호:{hostPhoneNum}</InformationItem>
+                  <InformationItem>성명 : {hostInputFirst}</InformationItem>
+                  <InformationItem>주민번호 : {hostInputSecond}</InformationItem>
+                  <InformationItem>주소 : {hostAddress} {hostRestAddress}</InformationItem>
+                  <InformationItem>전화번호 : {hostPhoneNum}</InformationItem>
                 </InformationList>
                 <Signature>(서명)</Signature>
               </Informations>
@@ -149,30 +149,30 @@ const Information = () => {
               tenantType === '법인명' ? <>
               <Informations>
                 <InformationList>
-                  <InformationItem>법인명:{tenantInputFirst}</InformationItem>
-                  <InformationItem>대표이사:{tenantInputSecond}</InformationItem>
-                  <InformationItem>주소:{tenantAddress + tenantRestAddress}</InformationItem>
-                  <InformationItem>전화번호:{tenantPhoneNum}</InformationItem>
+                  <InformationItem>법인명 : {tenantInputFirst}</InformationItem>
+                  <InformationItem>대표이사 : {tenantInputSecond}</InformationItem>
+                  <InformationItem>주소 : {tenantAddress} {tenantRestAddress}</InformationItem>
+                  <InformationItem>전화번호 : {tenantPhoneNum}</InformationItem>
                 </InformationList>
                 <Signature>(서명)</Signature>
               </Informations>
               </> : (tenantType === '상호(사업체명)' ? <>
               <Informations>
                 <InformationList>
-                  <InformationItem>상호(사업체명):{tenantInputFirst}</InformationItem>
-                  <InformationItem>사업주명:{tenantInputSecond}</InformationItem>
-                  <InformationItem>주소:{tenantAddress + tenantRestAddress}</InformationItem>
-                  <InformationItem>전화번호:{tenantPhoneNum}</InformationItem>
+                  <InformationItem>상호(사업체명) : {tenantInputFirst}</InformationItem>
+                  <InformationItem>사업주명 : {tenantInputSecond}</InformationItem>
+                  <InformationItem>주소 : {tenantAddress} {tenantRestAddress}</InformationItem>
+                  <InformationItem>전화번호 : {tenantPhoneNum}</InformationItem>
                 </InformationList>
                 <Signature>(서명)</Signature>
               </Informations>
               </> : <>
               <Informations>
                 <InformationList>
-                  <InformationItem>성명:{tenantInputFirst}</InformationItem>
-                  <InformationItem>주민번호:{tenantInputSecond}</InformationItem>
-                  <InformationItem>주소:{tenantAddress + tenantRestAddress}</InformationItem>
-                  <InformationItem>전화번호:{tenantPhoneNum}</InformationItem>
+                  <InformationItem>성명 : {tenantInputFirst}</InformationItem>
+                  <InformationItem>주민번호 : {tenantInputSecond}</InformationItem>
+                  <InformationItem>주소 : {tenantAddress} {tenantRestAddress}</InformationItem>
+                  <InformationItem>전화번호 : {tenantPhoneNum}</InformationItem>
                 </InformationList>
                 <Signature>(서명)</Signature>
               </Informations>
