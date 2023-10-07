@@ -58,55 +58,61 @@ const OptionWrapper = styled.div`
 const OptionTemplate = () => {
   return (
     <OptionTemplateBlock>
-       <OptionWrapper className='marginTopNone'>
+      <OptionWrapper className='marginTopNone'>
         <OptionHeader>
           <div>집주인 및 세입자</div>
           <div className='page'>1<span className='opacity'> / 7</span></div>
         </OptionHeader>
         <OptionFirst />
-       </OptionWrapper>
-       <OptionWrapper>
+      </OptionWrapper>
+
+      <OptionWrapper>
         <OptionHeader>
           <div>임대차계약의 내용</div>
           <div className='page'>2<span className='opacity'> / 7</span></div>
         </OptionHeader>
         <OptionSecond />
-       </OptionWrapper>
-       <OptionWrapper>
+      </OptionWrapper>
+      
+      <OptionWrapper>
         <OptionHeader>
           <div>보증금 지급</div>
           <div className='page'>3<span className='opacity'> / 7</span></div>
         </OptionHeader>
         <OptionThird />
-       </OptionWrapper>
-       <OptionWrapper>
+      </OptionWrapper>
+      
+      <OptionWrapper>
         <OptionHeader>
           <div>특약사항</div>
           <div className='page'>4<span className='opacity'> / 7</span></div>
         </OptionHeader>
         <OptionFourth />
-       </OptionWrapper>
-       <OptionWrapper>
+      </OptionWrapper>
+      
+      <OptionWrapper>
         <OptionHeader>
           <div>부동산의 표시</div>
           <div className='page'>5<span className='opacity'> / 7</span></div>
         </OptionHeader>
         <OptionFifth />
-       </OptionWrapper>
-       <OptionWrapper>
+      </OptionWrapper>
+
+      <OptionWrapper>
         <OptionHeader>
           <div>집주인 상세정보</div>
           <div className='page'>6<span className='opacity'> / 7</span></div>
         </OptionHeader>
         <OptionSixth />
-       </OptionWrapper>
-       <OptionWrapper>
+      </OptionWrapper>
+       
+      <OptionWrapper>
         <OptionHeader>
           <div>세입자 상세정보</div>
           <div className='page'>7<span className='opacity'> / 7</span></div>
         </OptionHeader>
         <OptionSeventh />
-       </OptionWrapper>
+      </OptionWrapper>
     </OptionTemplateBlock >
   );
 };

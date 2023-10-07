@@ -164,7 +164,11 @@ const OptionFifth = () => {
                   type='text'
                   placeholder='토지용도 면적 입력'
                   value={landUseArea}
-                  onChange={(e) => dispatch(changeLandUseArea(e.target.value))}
+                  onChange={e =>{ 
+                    const value = e.target.value;
+                    const filteredValue = value.replace(/[^0-9]/g, '');
+                    dispatch(changeLandUseArea(filteredValue))
+                  }}
                 />
                 <span>m²</span>
               </InputBox>
@@ -197,7 +201,11 @@ const OptionFifth = () => {
                   type='text'
                   placeholder='건물 구조⋅용도 면적 입력'
                   value={buildingUseArea}
-                  onChange={(e) => dispatch(changeBuildingUseArea(e.target.value))}
+                  onChange={e =>{ 
+                    const value = e.target.value;
+                    const filteredValue = value.replace(/[^0-9]/g, '');
+                    dispatch(changeBuildingUseArea(filteredValue))
+                  }}
                 />
                 <span>m²</span>
               </InputBox>
@@ -230,7 +238,11 @@ const OptionFifth = () => {
                   type='text'
                   placeholder='임대할 부분 면적 입력'
                   value={rentableSpaceArea}
-                  onChange={(e) => dispatch(changeRentableSpaceArea(e.target.value))}
+                  onChange={e =>{ 
+                    const value = e.target.value;
+                    const filteredValue = value.replace(/[^0-9]/g, '');
+                    dispatch(changeRentableSpaceArea(filteredValue))
+                  }}
                 />
                 <span>m²</span>
               </InputBox>

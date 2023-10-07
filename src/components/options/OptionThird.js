@@ -162,7 +162,11 @@ const OptionThird = () => {
                     type='text'
                     placeholder='보증금 입력'
                     value={subsidy}
-                    onChange={(e) => dispatch(changeSubsidy(e.target.value))}
+                    onChange={e =>{ 
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^0-9]/g, '');
+                      dispatch(changeSubsidy(filteredValue))
+                    }}
                   />
                   <span>원</span>
                 </InputBox>
@@ -175,7 +179,11 @@ const OptionThird = () => {
                     type='text'
                     placeholder='전세 보증금 입력'
                     value={subsidy}
-                    onChange={(e) => dispatch(changeSubsidy(e.target.value))}
+                    onChange={e =>{ 
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^0-9]/g, '');
+                      dispatch(changeSubsidy(filteredValue))
+                    }}
                   />
                   <span>원</span>
                 </InputBox>
@@ -192,7 +200,11 @@ const OptionThird = () => {
                 type='text'
                 placeholder='계약금 입력'
                 value={downPayment}
-                onChange={(e) => dispatch(changeDownPayment(e.target.value))}
+                onChange={e =>{ 
+                  const value = e.target.value;
+                  const filteredValue = value.replace(/[^0-9]/g, '');
+                  dispatch(changeDownPayment(filteredValue))
+                }}
               />
               <span>원</span>
             </InputBox>
@@ -201,7 +213,11 @@ const OptionThird = () => {
                 type='text'
                 placeholder='영수자 입력'
                 value={payer}
-                onChange={(e) => dispatch(changePayer(e.target.value))}
+                onChange={e =>{
+                  const value = e.target.value;
+                  const filteredValue = value.replace(/[^\p{Script=Hangul}]/gu, '');
+                  dispatch(changePayer(filteredValue))
+                }}
               />
             </InputBox>
           </InputWrapper>
@@ -223,7 +239,11 @@ const OptionThird = () => {
                     type='text'
                     placeholder='중도금 입력'
                     value={middlePayment}
-                    onChange={(e) => dispatch(changeMiddlePayment(e.target.value))}
+                    onChange={e =>{ 
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^0-9]/g, '');
+                      dispatch(changeMiddlePayment(filteredValue))
+                    }}
                   />
                   <span>원</span>
                 </InputBox>
@@ -258,7 +278,11 @@ const OptionThird = () => {
                     type='text'
                     placeholder='잔금 입력'
                     value={balance}
-                    onChange={(e) => dispatch(changeBalance(e.target.value))}
+                    onChange={e =>{ 
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^0-9]/g, '');
+                      dispatch(changeBalance(filteredValue))
+                    }}
                   />
                   <span>원</span>
                 </InputBox>
@@ -313,7 +337,11 @@ const OptionThird = () => {
                     type='text'
                     placeholder='차임액 입력'
                     value={charge}
-                    onChange={(e) => dispatch(changeCharge(e.target.value))}
+                    onChange={e =>{ 
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^0-9]/g, '');
+                      dispatch(changeCharge(filteredValue))
+                    }}
                   />
                   <span>원</span>
                 </InputBox>
@@ -323,7 +351,11 @@ const OptionThird = () => {
                     type='text'
                     placeholder='차임 지급일 입력'
                     value={chargePaymentDate}
-                    onChange={(e) => dispatch(changeChargePaymentDate(e.target.value))}
+                    onChange={e =>{ 
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^0-9]/g, '');
+                      dispatch(changeChargePaymentDate(filteredValue))
+                    }}
                   />
                   <span>일</span>
                 </InputBox>
@@ -340,8 +372,11 @@ const OptionThird = () => {
                 type='text'
                 placeholder='은행명 입력'
                 value={bankName}
-                onChange={(e) => dispatch(changeBankName(e.target.value))}
-
+                onChange={e =>{
+                  const value = e.target.value;
+                  const filteredValue = value.replace(/[^\p{Script=Hangul}]/gu, '');
+                  dispatch(changeBankName(filteredValue))
+                }}
               />
             </InputBox>
             <InputBox>
@@ -351,7 +386,11 @@ const OptionThird = () => {
                 type='text'
                 placeholder='계좌번호 입력'
                 value={accountNumber}
-                onChange={(e) => dispatch(changeAccountNumber(e.target.value))}
+                onChange={e =>{ 
+                  const value = e.target.value;
+                  const filteredValue = value.replace(/[^0-9]/g, '');
+                  dispatch(changeAccountNumber(filteredValue))
+                }}
               />
             </InputBox>
             <InputBox>
@@ -361,7 +400,11 @@ const OptionThird = () => {
                 type='text'
                 placeholder='예금주 입력'
                 value={accountHolder}
-                onChange={(e) => dispatch(changeAccountHolder(e.target.value))}
+                onChange={e =>{
+                  const value = e.target.value;
+                  const filteredValue = value.replace(/[^\p{Script=Hangul}]/gu, '');
+                  dispatch(changeAccountHolder(filteredValue))
+                }}
               />
             </InputBox>
           </InputWrapper>

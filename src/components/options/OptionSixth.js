@@ -126,7 +126,11 @@ const OptionSixth = () => {
                     type='text'
                     placeholder='대표이사 입력'
                     value={hostInputSecond}
-                    onChange={(e) => dispatch(changeHostInputSecond(e.target.value))}
+                    onChange={e =>{
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^\p{Script=Hangul}]/gu, '');
+                      dispatch(changeHostInputSecond(filteredValue))
+                    }}
                   />
                 </InputBox>
               </InputWrapper>
@@ -150,7 +154,11 @@ const OptionSixth = () => {
                     type='text'
                     placeholder='사업주명 입력'
                     value={hostInputSecond}
-                    onChange={(e) => dispatch(changeHostInputSecond(e.target.value))}
+                    onChange={e =>{
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^\p{Script=Hangul}]/gu, '');
+                      dispatch(changeHostInputSecond(filteredValue))
+                    }}
                   />
                 </InputBox>
               </InputWrapper>
@@ -162,7 +170,11 @@ const OptionSixth = () => {
                     type='text'
                     placeholder='성명 입력'
                     value={hostInputFirst}
-                    onChange={(e) => dispatch(changeHostInputFirst(e.target.value))}
+                    onChange={e =>{
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^\p{Script=Hangul}]/gu, '');
+                      dispatch(changeHostInputFirst(filteredValue))
+                    }}
                   />
                 </InputBox>
               </InputWrapper>
@@ -174,7 +186,11 @@ const OptionSixth = () => {
                     type='text'
                     placeholder='주민번호 입력'
                     value={hostInputSecond}
-                    onChange={(e) => dispatch(changeHostInputSecond(e.target.value))}
+                    onChange={e =>{ 
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^0-9]/g, '');
+                      dispatch(changeHostInputSecond(filteredValue))
+                    }}
                   />
                 </InputBox>
               </InputWrapper>
@@ -203,7 +219,11 @@ const OptionSixth = () => {
                 type='text'
                 placeholder='전호번호 입력'
                 value={hostPhoneNum}
-                onChange={(e) => dispatch(changeHostPhoneNum(e.target.value))}
+                onChange={e =>{ 
+                  const value = e.target.value;
+                  const filteredValue = value.replace(/[^0-9]/g, '');
+                  dispatch(changeHostPhoneNum(filteredValue))
+                }}
               />
             </InputBox>
           </InputWrapper>

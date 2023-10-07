@@ -183,7 +183,11 @@ const OptionSecond = () => {
                   type='text'
                   placeholder='월세금액 입력'
                   value={monthlyRent}
-                  onChange={e => dispatch(changeMonthlyRent(e.target.value))}
+                  onChange={e =>{ 
+                    const value = e.target.value;
+                    const filteredValue = value.replace(/[^0-9]/g, '');
+                    dispatch(changeMonthlyRent(filteredValue))
+                  }}
                 />
                 <span>원</span>
               </InputBox>
@@ -198,7 +202,11 @@ const OptionSecond = () => {
                   type='text'
                   placeholder='지불일 입력'
                   value={paymentDate}
-                  onChange={e => dispatch(changePaymentDate(e.target.value))}
+                  onChange={e =>{ 
+                    const value = e.target.value;
+                    const filteredValue = value.replace(/[^0-9]/g, '');
+                    dispatch(changePaymentDate(filteredValue))
+                  }}
                 />
                 <span>일</span>
               </InputBox>

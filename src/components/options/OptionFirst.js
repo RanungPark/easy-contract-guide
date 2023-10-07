@@ -153,7 +153,11 @@ const OptionFirst = () => {
                     type='text'
                     placeholder='성명 입력'
                     value={host} 
-                    onChange={e => dispatch(changeHost(e.target.value))}
+                    onChange={e =>  {
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^\p{Script=Hangul}]/gu, '');
+                      dispatch(changeHost(filteredValue))
+                    }}
                     />
                     )
                 }
@@ -219,7 +223,11 @@ const OptionFirst = () => {
                     type='text'
                     placeholder='성명 입력'
                     value={tenant} 
-                    onChange={e => dispatch(changeTenant(e.target.value))}
+                    onChange={e =>{
+                      const value = e.target.value;
+                      const filteredValue = value.replace(/[^\p{Script=Hangul}]/gu, '');
+                      dispatch(changeTenant(filteredValue))
+                    }}
                     />
                     )
                 }
