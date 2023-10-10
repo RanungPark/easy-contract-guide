@@ -44,7 +44,6 @@ const MenuBody = styled.div`
   }
 `
 
-
 const MenuButton = styled.button`
   font-weight: bold;
   background: #8fc9f5;
@@ -115,7 +114,6 @@ const MenuStandardResult = () => {
     commands = result.resultFields.map(item => item);
   }
 
-
   return (
     <MenuStandardResultBlock>
       {contractResult.result === null ? <>
@@ -163,7 +161,6 @@ const MenuStandardResult = () => {
           ))}</>
         }
       </>}
-    
     </MenuStandardResultBlock >
   );
 };
