@@ -11,6 +11,7 @@ import optionFourth from './optionFourth';
 import optionFifth from './optionFifth';
 import optionSixth from './optionSixth';
 import optionSeventh from './optionSeventh';
+import menu from './menu';
 
 const rootReducer = combineReducers({
   auth,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   optionFifth,
   optionSixth,
   optionSeventh,
+  menu,
 })
 
 export function* rootSaga() {
