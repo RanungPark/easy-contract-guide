@@ -87,7 +87,7 @@ const RegisterForm = () => {
       return;
     }
 
-    axios.post('http://localhost:8080/signup', { 
+    axios.post('http://localhost:8080/auth/signup', { 
     email,
     password, 
     privacy_agreement_yn : allCheck, 

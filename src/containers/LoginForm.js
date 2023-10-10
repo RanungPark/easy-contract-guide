@@ -33,7 +33,7 @@ const LoginForm = () => {
   const onSubmit = e => {
     e.preventDefault();
     const { email, password } = form;
-    axios.post('http://localhost:8080/login', {email, password})
+    axios.post('http://localhost:8080/auth/login', {email, password})
     .then(function (response) {
       dispatch(
         loginSuccess(response.data.data)
