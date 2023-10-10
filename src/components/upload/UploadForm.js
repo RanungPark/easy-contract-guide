@@ -3,13 +3,12 @@ import { styled } from 'styled-components';
 import { LuFileUp } from 'react-icons/lu';
 import palette from '../../libs/styles/palette';
 import Button from '../common/Button';
-import { Link } from 'react-router-dom';
 
 const UploadFormBlock = styled.div`
   display:flex;
   justify-content:center;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
   flex-direction:column;
   margin-bottom: 1rem;
 `;
@@ -49,32 +48,6 @@ const StyledLabel = styled.label`
   }
 `
 
-const Footer = styled.div`
-  margin-top: 2em;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row-reverse;
-  width: 100%;
-
-  .oneLink{
-    justify-content: center;
-  }
-
-  a {
-    height: 2.5rem;
-    display: inline-block;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ${palette.gray[6]};
-    border-radius: 4px;
-    padding: 0.5rem;
-    &:hover {
-      color: ${palette.gray[5]};
-    }
-  }
-`
-
 const ButtonWithMarginTop = styled(Button)`
   margin-top:1rem;
 `
@@ -94,7 +67,7 @@ const UploadForm = ({type, onChange, onSubmit, text, message}) => {
         <StyledLabel htmlFor='upload'>
           <LuFileUp />
           {text === '' ? (
-          <div className='text'>Drop your file here or Click to browse</div>
+          <div className='text'>Click to browse</div>
           ) : (
           <div className='filename'>{text}</div>
           )}
@@ -103,28 +76,7 @@ const UploadForm = ({type, onChange, onSubmit, text, message}) => {
           
         {message && <MessageMessage>{message}</MessageMessage>}
       </form>
-      <Footer>
-        {type === 'contract' ? (
-          <>
-           <Link to='/upload/building'>
-              건축물 대장
-            </Link>
-            <Link to='/upload/register'>
-              등기부 등본
-            </Link>
-          </>
-        ) : (type === 'building' ? (
-            <Link to='/upload/register'>
-              등기부 등본
-            </Link>
-        ) : (
-          <>
-            <Link to='/upload/building'>
-              건축물 대장
-            </Link>
-          </>
-        ))}
-      </Footer>
+     
     </UploadFormBlock >
   );
 };
