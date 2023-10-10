@@ -9,10 +9,10 @@ const BuildingUploadForm = () => {
   const [text, setText] = useState('');
   const [message, setMessage] = useState(false);
 
-  const {building ,contractId} = useSelector(({file}) => 
+  const {building ,contract} = useSelector(({file}) => 
   ({
     building: file.building,
-    contractId: file.contractId,
+    contract: file.contract,
    }))
   const dispatch = useDispatch();
 
@@ -26,6 +26,7 @@ const BuildingUploadForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    const {file} = contract
 
     console.log('서밋함');
     if(!pdfFile) {
@@ -34,7 +35,7 @@ const BuildingUploadForm = () => {
     }
 
     const formData = new FormData();
-    formData.append('contractId', contractId);
+    formData.append('contractId', file.contractId);
     formData.append('pdfFile', pdfFile);
     axios.post('http://localhost:8080/file/building-register', formData ,{
       headers : {
