@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UploadForm from '../components/upload/UploadForm';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUploadFileFailure, registerUploadFileSuccess } from '../modules/file';
 
 const RegisterUploadForm = () => {
   const [pdfFile, setPdfFile] = useState(null);
   const [text, setText] = useState('');
   const [message, setMessage] = useState(false);
-  const contractId = 1;
+
+  const {register ,contract} = useSelector(({file}) => 
+  ({
+    register: file.register,
+    contract: file.contract,
+   }))
+   const dispatch = useDispatch();
 
   const onChange = e => {
     const file = e.target.files[0];
@@ -18,6 +26,7 @@ const RegisterUploadForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    const {file} = contract
 
     console.log('서밋함');
     if(!pdfFile) {
@@ -26,7 +35,7 @@ const RegisterUploadForm = () => {
     }
 
     const formData = new FormData();
-    formData.append('contractId', contractId);
+    formData.append('contractId', file.contractId);
     formData.append('pdfFile', pdfFile);
     axios.post('http://localhost:8080/file/certifiedcopy', formData ,{
       headers : {
@@ -35,13 +44,33 @@ const RegisterUploadForm = () => {
     })
     .then(function (response) {
       console.log(response.data);
-      setMessage(`File upload completed`);
+      dispatch(
+        registerUploadFileSuccess({
+          form: 'register',
+          key: 'file',
+          value: response.data.data
+        })
+      )
     })
     .catch(function (error) {
       console.log(error.response.data);
-      setMessage(error.response.data.responseMessage)
+      dispatch(
+        registerUploadFileFailure({
+          form: 'register',
+          key: 'file',
+          value: error.response.data
+        })
+      )
     })
   }
+
+  useEffect(() => {
+    const {error} = register
+    if(error) {
+      setMessage(error.responseMessage);
+      return;
+    }
+  },[register]);
 
   return (
     <UploadForm
