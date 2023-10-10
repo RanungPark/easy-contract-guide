@@ -75,6 +75,7 @@ const PieChartForm = ({type}) => {
               background='#dee2e6'
               rounded
               animate
+              startAngle={-90}
               label={({dataEntry}) => dataEntry.value + '%'}
               labelStyle={{
               fontSize: "26px",
@@ -106,6 +107,7 @@ const PieChartForm = ({type}) => {
                 background='#dee2e6'
                 rounded
                 animate
+                startAngle={-90}
                 label={({dataEntry}) => dataEntry.value + '%'}
                 labelStyle={{
                 fontSize: "26px",
@@ -137,6 +139,7 @@ const PieChartForm = ({type}) => {
                 background='#dee2e6'
                 rounded
                 animate
+                startAngle={-90}
                 label={({dataEntry}) => dataEntry.value + '%'}
                 labelStyle={{
                 fontSize: "26px",
