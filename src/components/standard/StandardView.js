@@ -48,6 +48,9 @@ const BodySecond = styled.div`
   width: 50%;
   height:100%;
   margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
     height: 50%;
@@ -179,8 +182,8 @@ const StandardView = () => {
           </BodyThird>
         </> : (
             comment === '안전도 퍼센트 보기' ? <BodyThird className=''>
-              <PieChartForm />
-               <Comment>
+              <PieChartForm type={'standard'}/>
+                <Comment>
                 <b>표준 계약서 분석법</b>
                 <br/><br/>
                 임대하고자 하는 부동산의 소유주와 거래자인 집주인과 일치하는지 확인
@@ -188,7 +191,7 @@ const StandardView = () => {
                 특약 사항을 확인하여 수리에 관한 협의를 마쳤는지 확인
                 <br/><br/>
                 건물의 구조,용도와 보증금을 확인하여 사기 피해 우려가 있는지 확인
-               </Comment>
+                </Comment>
             </BodyThird> : <BodyThird>
               <Comment dangerouslySetInnerHTML={ {__html: comment} } />
             </BodyThird>
