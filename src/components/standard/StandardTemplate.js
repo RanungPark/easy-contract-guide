@@ -27,7 +27,7 @@ const StandardTemplate = () => {
       <Header />
       <StandardFlex>
         {
-          file === null && <MenuBlur props={'임대차계약서 등록후 사용가능'}/> 
+          file === null && <MenuBlur props={'임대차계약서 등록후 사용가능'} type={'nomal'}/> 
         }
         <MenuTemplate type='standard'/>
         <StandardForm />
