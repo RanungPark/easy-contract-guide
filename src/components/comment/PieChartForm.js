@@ -6,7 +6,7 @@ import { HiSpeakerphone } from "react-icons/hi";
 import palette from '../../libs/styles/palette';
 
 const PieChartFormBlock = styled.div`
-  width: 100%;
+  width: 50%;
   height: 15rem;
   flex-direction:column;
   display: flex;
