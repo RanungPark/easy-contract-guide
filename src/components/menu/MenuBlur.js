@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import Button from '../common/Button';
 
 const MenuBlurBlock = styled.div`
   position: absolute;
@@ -30,16 +31,26 @@ const ErrorBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  opacity: 0.7;
 `
 
 
-const MenuBlur = ({props}) => {
+const MenuBlur = ({props, type}) => {
   return (
     <MenuBlurBlock>
-      <ErrorBox>
+      {
+        type === 'nomal' && <ErrorBox>
+           <ErrorBox className='error-massage'>
         {props}
-      </ErrorBox>
+        </ErrorBox>
+        </ErrorBox>
+      }
+      {type === 'result' && <ErrorBox>
+        <>
+        <ErrorBox className='error-massage'>표준계약서 결과보기후 이용</ErrorBox>
+        <Button to="/standard">표준계약서 결과 확인</Button>
+        </>
+        </ErrorBox>}
+            
     </MenuBlurBlock >
   );
 };
