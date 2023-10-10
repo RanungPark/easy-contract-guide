@@ -1,9 +1,10 @@
 import React from 'react';
-import BuildingView from '../components/view/BuildingView';
+import BuildingTemplate from '../components/building/BuildingTemplate';
+
 
 const BuildingViewPage = () => {
   return (
-    <BuildingView />
+    <BuildingTemplate />
   );
 };
 

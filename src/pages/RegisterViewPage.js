@@ -1,9 +1,10 @@
 import React from 'react';
-import RegisterView from '../components/view/RegisterView';
+import RegisterTemplate from '../components/register/RegisterTemplate';
+
 
 const RegisterViewPage = () => {
   return (
-    <RegisterView />
+    <RegisterTemplate />
   );
 };
 
