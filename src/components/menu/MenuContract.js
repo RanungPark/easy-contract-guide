@@ -48,7 +48,6 @@ const PdfImage = styled.img`
 
 const MenuContract = () => {
 
-  
   const dispatch = useDispatch();
   const {contractMenu, contract} = useSelector(({menu, file}) => ({
     contractMenu : menu.contractMenu,
@@ -71,7 +70,6 @@ const MenuContract = () => {
         value: !contractToggle,
       }))
   }
-
 
   return (
     <MenuContractBlock>
