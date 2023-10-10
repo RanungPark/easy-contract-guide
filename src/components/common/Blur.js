@@ -46,21 +46,8 @@ const Blur = ({type}) => {
           type === 'standard' ?
           <>
             <ErrorBox className='error-massage'>임대차 계약서 등록 후 이용해주세요</ErrorBox>
-            <Button to="/upload/contract">임대차 계약 추가</Button>
-          </> : (
-            type === 'building' ?
-            <>
-              <ErrorBox className='error-massage'>건축물 대장을 등록 후 이용해주세요</ErrorBox>
-              <Button to="/upload/building">건축물 대장 추가</Button>
-            </> : (
-              type === 'register' ?
-              <>
-                <ErrorBox className='error-massage'>등기부 등본을 등록 후 이용해주세요</ErrorBox>
-                <Button to="/upload/register">등기부 등본 추가</Button>
-              </> : <> </>
-            )
-          )
-        }
+            <Button to="/standard">임대차 계약 추가</Button>
+            </> : <> </>}
       </ErrorBox>
     </BlurBlock >
   );
