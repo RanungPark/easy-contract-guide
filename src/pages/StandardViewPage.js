@@ -1,9 +1,9 @@
 import React from 'react';
-import StandardView from '../components/view/StandardView';
+import StandardTemplate from '../components/standard/StandardTemplate';
 
 const StandardViewPage = () => {
   return (
-    <StandardView />
+    <StandardTemplate />
   );
 };
 
