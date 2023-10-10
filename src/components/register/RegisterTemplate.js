@@ -18,13 +18,15 @@ const RegisterFlex = styled.div`
 `
 
 const RegisterTemplate = () => {
-  const {register, contract} = useSelector(({file}) => ({
+  const {register, contract, contractResult} = useSelector(({file, result}) => ({
     register : file.register,
-    contract : file.contract
+    contract : file.contract,
+    contractResult: result.contractResult,
   }))
 
   const {file} = register;
   const contractFile = contract.file
+  const {result} = contractResult
 
   return (
     <RegisterTemplateBlock>
@@ -34,7 +36,9 @@ const RegisterTemplate = () => {
       }
       <RegisterFlex>
         {
-          file === null && <MenuBlur props={'등기부등본 등록후 사용가능'}/> 
+          file === null ? <MenuBlur props={'등기부등본 등록후 사용가능'} type={'nomal'}/> : (
+            result === null ? <MenuBlur type={'result'} /> : <></>
+          )
         }
         <MenuTemplate type='register'/>
         <RegisterForm />

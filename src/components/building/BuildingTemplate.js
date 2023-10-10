@@ -17,13 +17,15 @@ display: flex;
 `
 
 const BuildingTemplate = () => {
-  const {building, contract} = useSelector(({file}) => ({
+  const {building, contract, buildingResult} = useSelector(({file,result}) => ({
     building : file.building,
-    contract : file.contract
+    contract : file.contract,
+    buildingResult: result.buildingResult,
   }))
 
   const {file} = building;
-  const contractFile = contract.file
+  const contractFile = contract.file;
+  const {result} = buildingResult;
 
   return (
     <BuildingTemplateBlock>
@@ -33,7 +35,9 @@ const BuildingTemplate = () => {
       }
       <BuildingFlex>
         {
-          file === null && <MenuBlur props={'건축물대장 등록후 사용가능'}/> 
+          file === null ? <MenuBlur props={'건축물대장 등록후 사용가능'} type={'nomal'}/>  : (
+            result === null ? <MenuBlur type={'result'} /> : <></>
+          )
         }
         <MenuTemplate type='building'/>
         <BuildingForm/>
