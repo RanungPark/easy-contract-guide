@@ -20,14 +20,14 @@ const StandardTemplate = () => {
     contract : file.contract,
   }))
 
-  const contractFile = contract.file;
+  const {file} = contract;
 
   return (
     <StandardTemplateBlock>
       <Header />
       <StandardFlex>
         {
-          contractFile === null && <MenuBlur props={'임대차계약서 등록후 사용가능'}/> 
+          file === null && <MenuBlur props={'임대차계약서 등록후 사용가능'}/> 
         }
         <MenuTemplate type='standard'/>
         <StandardForm />
