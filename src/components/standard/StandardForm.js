@@ -13,7 +13,6 @@ const StandardFormBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;
 
 const StandardForm = () => {
@@ -27,7 +26,7 @@ const StandardForm = () => {
     <StandardFormBlock>
       {
         file === null  ? <>
-          <UploadTemplate  props={'임대차 계약서 업로드'}>
+          <UploadTemplate  props={'임대차계약서 업로드'}>
             <ContractUploadForm />
           </UploadTemplate>
         </> : <StandardView /> 
