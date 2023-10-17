@@ -5,6 +5,7 @@ import MenuTemplate from '../menu/MenuTemplate';
 import StandardForm from './StandardForm';
 import { useSelector } from 'react-redux';
 import MenuBlur from '../menu/MenuBlur';
+import Blur from '../common/Blur';
 
 const StandardTemplateBlock = styled.div`
   display: flex;
@@ -16,8 +17,9 @@ const StandardFlex = styled.div`
 `
 
 const StandardTemplate = () => {
-  const {contract} = useSelector(({file}) => ({
+  const {contract, user} = useSelector(({file, user}) => ({
     contract : file.contract,
+    user: user.user
   }))
 
   const {file} = contract;
@@ -25,6 +27,9 @@ const StandardTemplate = () => {
   return (
     <StandardTemplateBlock>
       <Header />
+      {
+        user === null && <Blur />
+      }
       <StandardFlex>
         {
           file === null && <MenuBlur props={'임대차계약서 등록후 사용가능'} type={'nomal'}/> 
