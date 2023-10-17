@@ -17,15 +17,15 @@ display: flex;
 `
 
 const BuildingTemplate = () => {
-  const {building, contract, buildingResult} = useSelector(({file,result}) => ({
+  const {building, contract, contractResult} = useSelector(({file,result}) => ({
     building : file.building,
     contract : file.contract,
-    buildingResult: result.buildingResult,
+    contractResult: result.contractResult,
   }))
 
   const {file} = building;
   const contractFile = contract.file;
-  const {result} = buildingResult;
+  const {result} = contractResult;
 
   return (
     <BuildingTemplateBlock>
