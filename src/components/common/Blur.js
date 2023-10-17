@@ -47,7 +47,13 @@ const Blur = ({type}) => {
           <>
             <ErrorBox className='error-massage'>임대차 계약서 등록 후 이용해주세요</ErrorBox>
             <Button to="/standard">임대차 계약 추가</Button>
-            </> : <> </>}
+          </> : <>
+            <ErrorBox className='error-massage'>
+              로그인 후 이용해주세요
+            </ErrorBox>
+            <Button to="/">로그인</Button>
+          </>
+        }
       </ErrorBox>
     </BlurBlock >
   );
