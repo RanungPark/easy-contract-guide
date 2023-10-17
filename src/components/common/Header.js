@@ -4,8 +4,11 @@ import Button from './Button';
 import { Link } from 'react-router-dom';
 import palette from '../../libs/styles/palette';
 import { ResponsiveBig } from './Responsive';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import logoImg from '../../mock/img/logo3.png';
+import { logout } from '../../modules/user';
+import axios from 'axios';
+import { loginSuccess } from '../../modules/auth';
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -57,6 +60,30 @@ const Header = () => {
   ({
     user: user.user,
   }));
+  const dispatch = useDispatch();
+
+  let accessToken, refreshToken
+  if(user !== null) {
+    accessToken = user.tokenDto.accessToken;
+    refreshToken = user.tokenDto.refreshToken;
+  }
+
+  const onLogout = () => {
+    axios.post('http://localhost:8080/auth/logout', {accessToken , refreshToken})
+    .then(function(response) {
+      if(response){
+        dispatch(loginSuccess(false))
+        dispatch(logout())
+        localStorage.removeItem('user');
+      }
+      console.log(response);
+      return;
+    })
+    .catch(function(error) {
+      console.log(error);
+      return;
+    })
+  }
 
   return (
     <>
@@ -76,11 +103,11 @@ const Header = () => {
             user ? (
               <div className='right'>
                 <UserIndo>{user.username}</UserIndo>
-                <Button cyan>로그아웃</Button>
+                <Button onClick={onLogout} cyan>로그아웃</Button>
               </div>
             ) :(
               <div className='right'>
-                <Button to="/" cyan>로그인</Button>
+                <Button to="/">로그인</Button>
               </div>
             )
           }
