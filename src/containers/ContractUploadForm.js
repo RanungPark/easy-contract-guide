@@ -9,11 +9,19 @@ const ContractUploadForm = () => {
   const [text, setText] = useState('');
   const [message, setMessage] = useState(false);
 
-  const {contract ,userId} = useSelector(({file}) => 
+  const {contract , user} = useSelector(({file,user}) => 
   ({
     contract: file.contract,
-    userId: file.userId,
+    user: user.user
    }))
+
+  let accessToken, refreshToken, id
+  if(user !== null) {
+    accessToken = user.tokenDto.accessToken;
+    refreshToken = user.tokenDto.refreshToken;
+    id = user.id;
+  }
+ 
   const dispatch = useDispatch();
 
   const onChange = e => {
@@ -35,11 +43,12 @@ const ContractUploadForm = () => {
     }
 
     const formData = new FormData();
-    formData.append('userId', userId);
+    formData.append('userId', id);
     formData.append('pdfFile', pdfFile);
     axios.post('http://localhost:8080/file/contract', formData ,{
       headers : {
-        'Content-Type' : 'multipart/form-data'
+        'Content-Type' : 'multipart/form-data',
+        'Authorization': 'Bearer ' + accessToken
       }
     })
     .then(function (response) {
