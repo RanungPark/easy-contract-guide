@@ -9,6 +9,7 @@ import rootReducer, { rootSaga } from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter } from 'react-router-dom';
 import createSagaMiddleware from 'redux-saga';
+import {checkUserFailure, checkUserSuccess, tempSetUser } from './modules/user';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -16,24 +17,22 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
-// function loadUser() {
-//   try {
-//     const user = localStorage.getItem('user');
-//     if(!user) return;
-//     store.dispatch(tempSetUser(JSON.parse(user)));
-//     store.dispatch(checkUser);
-//   } catch(e) {
-//     console.log('localStorage is not working');
-//   }
-// }
+function loadUser() {
+  try {
+    const user = localStorage.getItem('user');
+    if(!user) return;
+    store.dispatch(tempSetUser(JSON.parse(user)));
+  } catch(e) {
+    console.log('localStorage is not working');
+  }
+}
 
-sagaMiddleware.run(rootSaga);
-// loadUser();
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+  sagaMiddleware.run(rootSaga);
+  loadUser();
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
   <Provider store={store}>
-    <BrowserRouter>
+  <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>
