@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import AuthForm from '../components/auth/AuthForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, loginFailure, loginSuccess } from '../modules/auth';
+import {
+  changeField,
+  initializeForm,
+  loginFailure,
+  loginSuccess,
+} from '../modules/auth';
 import { useNavigate } from 'react-router-dom';
 import { checkUserSuccess } from '../modules/user';
 import axios from 'axios';
@@ -12,43 +17,42 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { form, loginAuth, loginAuthError, user } = useSelector(({auth, user}) => ({
-    form: auth.login,
-    loginAuth: auth.loginAuth,
-    loginAuthError: auth.loginAuthError,
-    user: user.user,
-  }));
+  const { form, loginAuth, loginAuthError, user } = useSelector(
+    ({ auth, user }) => ({
+      form: auth.login,
+      loginAuth: auth.loginAuth,
+      loginAuthError: auth.loginAuthError,
+      user: user.user,
+    }),
+  );
 
-  const onChange = e => {
-    const {value, name} = e.target;
+  const onChange = (e) => {
+    const { value, name } = e.target;
     dispatch(
       changeField({
         form: 'login',
         key: name,
         value,
-      })
+      }),
     );
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = form;
-    axios.post('http://localhost:8080/auth/login', {email, password})
-    .then(function (response) {
-      dispatch(
-        loginSuccess(response.data.data)
-      )
-    })
-    .catch(function (error) {
-      dispatch(
-        loginFailure(error.response.data)
-      )
-    })
-  }
+    axios
+      .post('http://localhost:8080/auth/login', { email, password })
+      .then(function (response) {
+        dispatch(loginSuccess(response.data.data));
+      })
+      .catch(function (error) {
+        dispatch(loginFailure(error.response.data));
+      });
+  };
 
   useEffect(() => {
     dispatch(initializeForm('login'));
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
     if (loginAuthError) {
@@ -57,32 +61,28 @@ const LoginForm = () => {
     }
     if (loginAuth) {
       console.log('로그인 성공');
-      dispatch(
-        checkUserSuccess(loginAuth)
-      )
+      dispatch(checkUserSuccess(loginAuth));
     }
-  },[loginAuth, loginAuthError, dispatch]);
+  }, [loginAuth, loginAuthError, dispatch]);
 
-  useEffect(()=> {
-    if(user){
-      dispatch(
-        fixUserId(user.id)
-      )
+  useEffect(() => {
+    if (user) {
+      dispatch(fixUserId(user.id));
       navigate('/standard');
       try {
         localStorage.setItem('user', JSON.stringify(user));
-      } catch(e) {
+      } catch (e) {
         console.log('localStorage is not working');
       }
     }
-  },[navigate, user, dispatch]);
+  }, [navigate, user, dispatch]);
 
   return (
-    <AuthForm 
-      type = 'login'
-      form = {form}
-      onChange = {onChange}
-      onSubmit = {onSubmit}
+    <AuthForm
+      type="login"
+      form={form}
+      onChange={onChange}
+      onSubmit={onSubmit}
       error={error}
     />
   );
