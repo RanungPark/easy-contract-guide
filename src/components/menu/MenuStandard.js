@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { AiOutlineUp, AiOutlineDown} from "react-icons/ai";
+import { AiOutlineUp, AiOutlineDown } from "react-icons/ai";
 import { useDispatch, useSelector } from 'react-redux';
 import palette from '../../libs/styles/palette';
 import { changeImgUrl, toggleSwitch } from '../../modules/menu';
@@ -47,18 +47,18 @@ const PdfImage = styled.img`
 
 const MenuStandard = () => {
   const imageUrls = [
-    `https://weaver-contractproject-159651426016-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/a1397f9c-a8f1-4784-8235-0e1f9001916f_%ED%91%9C%EC%A4%80%EC%9E%84%EB%8C%80%EC%B0%A8%EA%B3%84%EC%95%BD%EC%84%9C.pdf.png`,
-    `https://weaver-contractproject-159651426016-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/a1397f9c-a8f1-4784-8235-0e1f9001916f_%ED%91%9C%EC%A4%80%EC%9E%84%EB%8C%80%EC%B0%A8%EA%B3%84%EC%95%BD%EC%84%9C.pdf-2.png`,
-    `https://weaver-contractproject-159651426016-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/a1397f9c-a8f1-4784-8235-0e1f9001916f_%ED%91%9C%EC%A4%80%EC%9E%84%EB%8C%80%EC%B0%A8%EA%B3%84%EC%95%BD%EC%84%9C.pdf-3.png`,
-    `https://weaver-contractproject-159651426016-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/a1397f9c-a8f1-4784-8235-0e1f9001916f_%ED%91%9C%EC%A4%80%EC%9E%84%EB%8C%80%EC%B0%A8%EA%B3%84%EC%95%BD%EC%84%9C.pdf-4.png`
+    `https://contract-guide.s3.ap-northeast-2.amazonaws.com/7c15e51b-9b14-4c3e-91e2-755de566bb61_2023-%ED%91%9C%EC%A4%80%EC%9E%84%EB%8C%80%EC%B0%A8%EA%B3%84%EC%95%BD%EC%84%9C-%EC%96%91%EC%8B%9D-PDF-1.pdf.png`,
+    `https://contract-guide.s3.ap-northeast-2.amazonaws.com/21ad259b-88be-4c02-a3de-ccc0d2503110_2023-%ED%91%9C%EC%A4%80%EC%9E%84%EB%8C%80%EC%B0%A8%EA%B3%84%EC%95%BD%EC%84%9C-%EC%96%91%EC%8B%9D-PDF-2.pdf.png`,
+    `https://contract-guide.s3.ap-northeast-2.amazonaws.com/6362eb0f-0efb-4d58-a289-25633a0fd040_2023-%ED%91%9C%EC%A4%80%EC%9E%84%EB%8C%80%EC%B0%A8%EA%B3%84%EC%95%BD%EC%84%9C-%EC%96%91%EC%8B%9D-PDF-3.pdf.png`,
+    `https://contract-guide.s3.ap-northeast-2.amazonaws.com/382fed93-df6b-4db4-b797-0ba17e477c2c_2023-%ED%91%9C%EC%A4%80%EC%9E%84%EB%8C%80%EC%B0%A8%EA%B3%84%EC%95%BD%EC%84%9C-%EC%96%91%EC%8B%9D-PDF-4.pdf.png`
   ];
 
   const dispatch = useDispatch();
-  const {standardMenu} = useSelector(({menu}) => ({
-    standardMenu : menu.standardMenu,
+  const { standardMenu } = useSelector(({ menu }) => ({
+    standardMenu: menu.standardMenu,
   }))
 
-  const {standardToggle} = standardMenu;
+  const { standardToggle } = standardMenu;
 
   const handleClick = (e) => {
     dispatch(
@@ -77,11 +77,11 @@ const MenuStandard = () => {
           standardToggle === false ? <AiOutlineDown /> : <AiOutlineUp />
         }
       </MenuHeader>
-        {
-          standardToggle === true && <>
+      {
+        standardToggle === true && <>
           {imageUrls.map((imageUrl, index) => (
             <>
-              <MenuBody onClick={() => 
+              <MenuBody onClick={() =>
                 dispatch(
                   changeImgUrl({
                     form: 'standardMenu',
@@ -94,8 +94,8 @@ const MenuStandard = () => {
                 <PdfImage key={index} src={imageUrl} alt={`Image ${index}`} />
               </MenuBody>
             </>
-            ))} </>
-        }
+          ))} </>
+      }
     </MenuStandardBlock >
   );
 };
